@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,9 +18,11 @@ import java.util.ArrayList;
 public class Server extends Thread {
 
     private ServerSocket serverSocket;
+    private List<ClientHandlerThread> clientHandlers;
 
     public Server() throws IOException {
-        serverSocket = new ServerSocket(9000);
+        serverSocket = new ServerSocket(9000);//todo
+        clientHandlers = new ArrayList<>();
     }
 
     @Override
@@ -28,6 +31,20 @@ public class Server extends Thread {
             try {
                 System.out.println("waiting...");
                 Socket socket = serverSocket.accept();
+                ClientHandlerThread clientHandler = new ClientHandlerThread(socket);
+                clientHandlers.add(clientHandler);
+                clientHandler.start();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        stopAllClientHandlers();
+    }
+
+    private void stopAllClientHandlers() {
+        for (ClientHandlerThread clientHandler : clientHandlers) {
+            try {
+                clientHandler.stopClientHandler();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

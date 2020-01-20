@@ -7,11 +7,11 @@ package threads;
 
 import controller.Controller;
 import domain.Klijent;
+import domain.Knjiga;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,12 +43,29 @@ public class ClientHandlerThread extends Thread {
                         response = logIn(request);
                         break;
                     case Operation.OPERATION_RAZDUZI:
+                        response = razduziKnjigu(request);    
                         break;
                     case Operation.OPERATION_SACUVAJ_ZADUZIVANJE:
+                        response = sacuvajZaduzivanje(request);
                         break;
                     case Operation.OPERATION_VRATI_KNJIGE:
+                        response = vratiKnjige();
                         break;
-
+                    case Operation.OPERATION_UNOS_CLANARINE:
+                        response = unosClanarine(request);
+                        break;
+                    case Operation.OPERATION_BRISI_KNJIGU:
+                        response = brisiKnjigu(request);
+                        break;
+                    case Operation.OPERATION_DODAJ_NOVOG:
+                        response = dodajNovogKlijenta(request);
+                        break;
+                    case Operation.OPERATION_DODAJ_NOVU_KNJIGU:
+                        response = dodajNovuKnjigu(request);
+                        break;
+                    case Operation.OPERATION_IZMENA_KNJIGE:
+                        response = izmeniKnjigu(request);
+                        break;
                 }
                 sendResponse(response);
             } catch (Exception e) {
@@ -72,6 +89,65 @@ public class ClientHandlerThread extends Thread {
         }
         return response;
     }
+    
+    
+    private ResponseObject razduziKnjigu(RequestObject request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private ResponseObject sacuvajZaduzivanje(RequestObject request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private ResponseObject unosClanarine(RequestObject request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private ResponseObject vratiKnjige() {
+        ResponseObject response = new ResponseObject();
+        try {
+            response.setData(Controller.getInstance().vratiKnjige());
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private ResponseObject brisiKnjigu(RequestObject request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private ResponseObject dodajNovogKlijenta(RequestObject request) {
+        Klijent klijent = (Klijent) request.getData();
+        ResponseObject response = new ResponseObject();
+        try {
+            klijent = Controller.getInstance().novKlijent(klijent);
+            response.setData(klijent);
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private ResponseObject dodajNovuKnjigu(RequestObject request) {
+        Knjiga knjiga = (Knjiga) request.getData();
+        ResponseObject response = new ResponseObject();
+        try {
+            knjiga = Controller.getInstance().novaKnjiga(knjiga);
+            response.setData(knjiga);
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private ResponseObject izmeniKnjigu(RequestObject request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 
     private RequestObject receiveRequest() throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
@@ -91,7 +167,7 @@ public class ClientHandlerThread extends Thread {
     public Klijent getLoggedUser() {
         return loggedUser;
     }
-    
+
     
 
 }

@@ -6,10 +6,16 @@
 package controller;
 
 import domain.Klijent;
+import domain.Knjiga;
+import domain.OpstiDomenskiObjekat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import so.OpstaSistemskaOperacija;
+import so.SONovKlijent;
+import so.SONovaKnjiga;
 import so.SOPrijavaNaSistem;
+import so.SOVratiKnjige;
 
 /**
  *
@@ -36,5 +42,23 @@ public class Controller {
         OpstaSistemskaOperacija oso = new SOPrijavaNaSistem(KL);
         oso.opsteIzvrsenje();
         return (Klijent) oso.getOdo();
+    }
+    
+    public Knjiga novaKnjiga(Knjiga knjiga) throws Exception{
+        OpstaSistemskaOperacija oso = new SONovaKnjiga(knjiga);
+        oso.opsteIzvrsenje();
+        return (Knjiga) oso.getOdo();
+    }
+
+    public Klijent novKlijent(Klijent klijent) throws Exception {
+        OpstaSistemskaOperacija oso = new SONovKlijent(klijent);
+        oso.opsteIzvrsenje();
+        return (Klijent) oso.getOdo();
+    }
+
+    public List<OpstiDomenskiObjekat> vratiKnjige() throws Exception {
+        OpstaSistemskaOperacija oso = new SOVratiKnjige(null);
+        oso.opsteIzvrsenje();
+        return oso.getListOdo();
     }
 }

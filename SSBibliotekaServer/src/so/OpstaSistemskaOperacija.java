@@ -8,6 +8,7 @@ package so;
 import database.DatabaseBroker;
 import domain.OpstiDomenskiObjekat;
 import exception.ValidationException;
+import java.util.List;
 import validator.Validator;
 
 /**
@@ -18,10 +19,16 @@ public abstract class OpstaSistemskaOperacija {
     DatabaseBroker dbbr;
     Validator validator;
     OpstiDomenskiObjekat odo;
+    List<OpstiDomenskiObjekat> listodo;
 
     public OpstaSistemskaOperacija(OpstiDomenskiObjekat odo) {
         dbbr=new DatabaseBroker();
         this.odo=odo;
+    }
+    
+    public OpstaSistemskaOperacija(List<OpstiDomenskiObjekat> listodo){
+        dbbr = new DatabaseBroker();
+        this.listodo = listodo;
     }
     
     public void uspostaviKonekciju() throws Exception{
@@ -63,5 +70,9 @@ public abstract class OpstaSistemskaOperacija {
     
     public OpstiDomenskiObjekat getOdo(){
         return odo;
+    }
+    
+    public List<OpstiDomenskiObjekat> getListOdo(){
+        return listodo;
     }
 }

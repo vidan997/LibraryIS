@@ -5,26 +5,23 @@
  */
 package so;
 
+import domain.Knjiga;
 import domain.OpstiDomenskiObjekat;
-import domain.Zaduzivanje;
 
 /**
  *
  * @author vidan
  */
-public class SOZaduzivanjeKnjige extends OpstaSistemskaOperacija{
+public class SONovaKnjiga extends OpstaSistemskaOperacija{
 
-    public SOZaduzivanjeKnjige(OpstiDomenskiObjekat odo) {
+    public SONovaKnjiga(OpstiDomenskiObjekat odo) {
         super(odo);
     }
 
     @Override
     public void izvrsenjeOperacije() throws Exception {
-        
-        Zaduzivanje zaduzivanje = (Zaduzivanje) odo;
-        dbbr.insert(zaduzivanje);
-        
-        
+        Knjiga knjiga = (Knjiga) odo;
+        dbbr.insert(knjiga);
     }
     
 }

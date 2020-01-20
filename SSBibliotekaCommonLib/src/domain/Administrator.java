@@ -135,4 +135,11 @@ public class Administrator implements OpstiDomenskiObjekat {
     public void setId(Object id) {
     }
 
+    @Override
+    public void dajUslov() {
+        //
+    }
+
+    
+    
 }

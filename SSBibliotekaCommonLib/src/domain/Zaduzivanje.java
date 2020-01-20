@@ -125,6 +125,10 @@ public class Zaduzivanje implements OpstiDomenskiObjekat{
         //
     }
     
-    
+    @Override
+    public void dajUslov() {
+        //
+    }
+
     
 }

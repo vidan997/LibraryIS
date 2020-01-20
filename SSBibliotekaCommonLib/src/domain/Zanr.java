@@ -63,6 +63,10 @@ public class Zanr implements OpstiDomenskiObjekat{
         //
     }
     
-    
+    @Override
+    public void dajUslov() {
+        //
+    }
+
     
 }

@@ -16,5 +16,5 @@ public interface OpstiDomenskiObjekat {
     public String dajVrednostiAtributa();
     public boolean isAutoincrement();
     public void setId(Object id);
-    
+    public void dajUslov();
 }

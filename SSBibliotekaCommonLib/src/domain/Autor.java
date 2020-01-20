@@ -17,6 +17,12 @@ public class Autor implements OpstiDomenskiObjekat{
     public Autor() {
     }
 
+    @Override
+    public void dajUslov() {
+        //
+    }
+
+    
     public Autor(Long SifraA, String ImePrezime, boolean Domaci) {
         this.sifraA = SifraA;
         this.imePrezime = ImePrezime;

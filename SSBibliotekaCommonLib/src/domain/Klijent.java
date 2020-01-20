@@ -170,4 +170,10 @@ public class Klijent implements OpstiDomenskiObjekat {
         this.sifraKL=(Long)id;
     }
 
+    @Override
+    public void dajUslov() {
+        //
+    }
+
+    
 }

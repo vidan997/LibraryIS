@@ -73,5 +73,9 @@ public class PrimerakKnjige implements OpstiDomenskiObjekat{
         //
     }
     
-    
+    @Override
+    public void dajUslov() {
+        //
+    }
+
 }

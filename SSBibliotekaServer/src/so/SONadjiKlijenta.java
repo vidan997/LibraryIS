@@ -9,24 +9,21 @@ import domain.Klijent;
 import domain.OpstiDomenskiObjekat;
 import exception.LogInException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author vidan
  */
-public class SOPrijavaNaSistem extends OpstaSistemskaOperacija {
+public class SONadjiKlijenta extends OpstaSistemskaOperacija{
 
-    public SOPrijavaNaSistem(OpstiDomenskiObjekat odo) {
-        super(odo);
+    public SONadjiKlijenta(OpstiDomenskiObjekat klijent) {
+        super(klijent);
     }
 
     @Override
-    public void izvrsenjeOperacije() throws LogInException {
+    public void izvrsenjeOperacije() throws Exception {
         try {
             List<Klijent> provera = new ArrayList<>();
             ResultSet rs = dbbr.select(odo);
@@ -41,15 +38,14 @@ public class SOPrijavaNaSistem extends OpstaSistemskaOperacija {
             Klijent klijent = (Klijent) odo;
             
             for (Klijent obj : provera) {
-                if (klijent.getUserName().equals(obj.getUserName()) && klijent.getPassword().equals(obj.getPassword())) {
+                if (klijent.getUserName().equals(obj.getUserName())) {
                     odo = obj;
                     return;
                 }
             }
-            throw new LogInException("Ne postoji korisnik sa tim korisnickim imenom i lozinkom");
+            throw new LogInException("Ne postoji korisnik sa tim korisnickim imenom");
         } catch (Exception ex) {
             throw new LogInException("Konekcija sa bazon nije uspostavljena.");
         }
     }
-
 }

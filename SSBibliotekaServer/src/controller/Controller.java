@@ -8,14 +8,17 @@ package controller;
 import domain.Klijent;
 import domain.Knjiga;
 import domain.OpstiDomenskiObjekat;
+import exception.LogInException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import so.OpstaSistemskaOperacija;
+import so.SONadjiKlijenta;
 import so.SONovKlijent;
 import so.SONovaKnjiga;
 import so.SOPrijavaNaSistem;
 import so.SOVratiKnjige;
+import so.SOZaduzivanjeKnjige;
 
 /**
  *
@@ -35,11 +38,11 @@ public class Controller {
         return instance;
     }
 
-    public Klijent logIn(String username, String password) throws Exception {
-        Klijent KL = new Klijent();
-        KL.setUserName(username);
-        KL.setPassword(password);
-        OpstaSistemskaOperacija oso = new SOPrijavaNaSistem(KL);
+    public Klijent logIn(String username, String password) throws LogInException, Exception {
+        Klijent klijent = new Klijent();
+        klijent.setUserName(username);
+        klijent.setPassword(password);
+        OpstaSistemskaOperacija oso = new SOPrijavaNaSistem(klijent);
         oso.opsteIzvrsenje();
         return (Klijent) oso.getOdo();
     }
@@ -57,8 +60,20 @@ public class Controller {
     }
 
     public List<OpstiDomenskiObjekat> vratiKnjige() throws Exception {
-        OpstaSistemskaOperacija oso = new SOVratiKnjige(null);
+        OpstaSistemskaOperacija oso = new SOVratiKnjige();
         oso.opsteIzvrsenje();
         return oso.getListOdo();
+    }
+    
+    public List<OpstiDomenskiObjekat> sacuvajZaduzivanja(List<OpstiDomenskiObjekat> zaduzivanja) throws Exception{
+        OpstaSistemskaOperacija oso = new SOZaduzivanjeKnjige(zaduzivanja);
+        oso.opsteIzvrsenje();
+        return oso.getListOdo();
+    }
+
+    public Klijent nadjiKlijenta(Klijent klijent) throws Exception {
+        OpstaSistemskaOperacija oso = new SONadjiKlijenta(klijent);
+        oso.opsteIzvrsenje();
+        return (Klijent) oso.getOdo();
     }
 }

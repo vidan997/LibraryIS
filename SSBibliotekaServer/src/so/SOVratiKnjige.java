@@ -16,24 +16,22 @@ import java.util.List;
  *
  * @author vidan
  */
-public class SOVratiKnjige extends OpstaSistemskaOperacija{
+public class SOVratiKnjige extends OpstaSistemskaOperacija {
 
-    public SOVratiKnjige(OpstiDomenskiObjekat odo) {
-        super(odo);
+    public SOVratiKnjige() {
+        super();
     }
 
     @Override
     public void izvrsenjeOperacije() throws Exception {
-        List<Knjiga> knjige = new ArrayList<>();
+        List<OpstiDomenskiObjekat> knjige = new ArrayList<>();
         ResultSet rs = dbbr.select(odo);
-////////////////////////////555555555555555555
         while (rs.next()) {
-            Knjiga klijent = new Knjiga(rs.getLong("SifraK"),rs.getString("Naziv"),rs.getString("Izdavalac"), rs.getDate("DatumIzdavanja"), rs.getString("Sadrzaj"), rs.getInt("BrojStranica"), Jezik.SRPSKI, null, null);
-                    knjige.add(klijent);
+            Knjiga klijent = new Knjiga(rs.getLong("SifraK"), rs.getString("Naziv"), rs.getString("Izdavalac"), rs.getDate("DatumIzdavanja"), rs.getString("Sadrzaj"), rs.getInt("BrojStranica"), Jezik.SRPSKI, null, null);
+            knjige.add(klijent);
         }
         rs.close();
-ODRADITI!!!!!!!!!!!!!!!!!!!!!!!!!
-
+        listodo = knjige;
     }
-    
+
 }

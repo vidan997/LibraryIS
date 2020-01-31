@@ -8,10 +8,14 @@ package threads;
 import controller.Controller;
 import domain.Klijent;
 import domain.Knjiga;
+import domain.OpstiDomenskiObjekat;
+import exception.LogInException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +31,7 @@ public class ClientHandlerThread extends Thread {
 
     private Socket socket;
     private Klijent loggedUser;
+    private Date vremeLogovanja;
 
     public ClientHandlerThread(Socket socket) {
         this.socket = socket;
@@ -43,7 +48,7 @@ public class ClientHandlerThread extends Thread {
                         response = logIn(request);
                         break;
                     case Operation.OPERATION_RAZDUZI:
-                        response = razduziKnjigu(request);    
+                        response = razduziKnjigu(request);
                         break;
                     case Operation.OPERATION_SACUVAJ_ZADUZIVANJE:
                         response = sacuvajZaduzivanje(request);
@@ -66,6 +71,8 @@ public class ClientHandlerThread extends Thread {
                     case Operation.OPERATION_IZMENA_KNJIGE:
                         response = izmeniKnjigu(request);
                         break;
+                    case Operation.OPERATION_PRETRAZI_KLIJENTA:
+                        response = nadjiKlijenta(request);
                 }
                 sendResponse(response);
             } catch (Exception e) {
@@ -81,22 +88,35 @@ public class ClientHandlerThread extends Thread {
         ResponseObject response = new ResponseObject();
         try {
             Klijent user = Controller.getInstance().logIn(username, password);
-            loggedUser=user;
+            loggedUser = user;
+            vremeLogovanja = new Date(System.currentTimeMillis());
             response.setData(user);
+            Server.getInstance().dodajKlijenta(this);
+        } catch (LogInException e) {
+            e.printStackTrace();
+            response.setException(e);
         } catch (Exception e) {
             e.printStackTrace();
             response.setException(e);
         }
         return response;
     }
-    
-    
+
     private ResponseObject razduziKnjigu(RequestObject request) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private ResponseObject sacuvajZaduzivanje(RequestObject request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<OpstiDomenskiObjekat> zaduzivanja = (List<OpstiDomenskiObjekat>) request.getData();
+        ResponseObject response = new ResponseObject();
+        try {
+            zaduzivanja = Controller.getInstance().sacuvajZaduzivanja(zaduzivanja);
+            response.setData(zaduzivanja);
+        } catch (Exception ex) {
+            response.setException(ex);
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return response;
     }
 
     private ResponseObject unosClanarine(RequestObject request) {
@@ -148,6 +168,13 @@ public class ClientHandlerThread extends Thread {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    private ResponseObject nadjiKlijenta(RequestObject request) throws Exception {
+        Klijent klijent = (Klijent) request.getData();
+        ResponseObject response = new ResponseObject();
+        klijent = Controller.getInstance().nadjiKlijenta(klijent);
+        response.setData(klijent);
+        return response;
+    }
 
     private RequestObject receiveRequest() throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
@@ -159,9 +186,9 @@ public class ClientHandlerThread extends Thread {
         out.writeObject(response);
         out.flush();
     }
-    
-    public void stopClientHandler() throws IOException{
-            socket.close();
+
+    public void stopClientHandler() throws IOException {
+        socket.close();
     }
 
     public Klijent getLoggedUser() {

@@ -7,6 +7,7 @@ package so;
 
 import domain.OpstiDomenskiObjekat;
 import domain.Zaduzivanje;
+import java.util.List;
 
 /**
  *
@@ -14,17 +15,15 @@ import domain.Zaduzivanje;
  */
 public class SOZaduzivanjeKnjige extends OpstaSistemskaOperacija{
 
-    public SOZaduzivanjeKnjige(OpstiDomenskiObjekat odo) {
-        super(odo);
+    public SOZaduzivanjeKnjige(List<OpstiDomenskiObjekat> listodo) {
+        super(listodo);
     }
 
     @Override
     public void izvrsenjeOperacije() throws Exception {
-        
-        Zaduzivanje zaduzivanje = (Zaduzivanje) odo;
-        dbbr.insert(zaduzivanje);
-        
-        
+        for (OpstiDomenskiObjekat zaduzivanje : listodo) {
+            dbbr.insert(zaduzivanje);
+        }
     }
     
 }

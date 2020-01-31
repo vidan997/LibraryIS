@@ -30,6 +30,10 @@ public abstract class OpstaSistemskaOperacija {
         dbbr = new DatabaseBroker();
         this.listodo = listodo;
     }
+
+    public OpstaSistemskaOperacija() {
+        dbbr = new DatabaseBroker();
+    }
     
     public void uspostaviKonekciju() throws Exception{
         dbbr.connect();

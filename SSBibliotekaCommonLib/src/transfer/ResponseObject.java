@@ -16,7 +16,6 @@ public class ResponseObject implements Serializable{
     
     private Object data;
     private Exception exception;
-
     public ResponseObject() {
     }
 

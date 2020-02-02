@@ -5,6 +5,8 @@
  */
 package view;
 
+import threads.Server;
+import threads.UserThread;
 /**
  *
  * @author vidan
@@ -14,9 +16,12 @@ public class DialogUsers extends javax.swing.JDialog {
     /**
      * Creates new form DialogUsers
      */
-    public DialogUsers(java.awt.Frame parent, boolean modal) {
+    
+    public DialogUsers(java.awt.Frame parent, boolean modal, Server serverThread) {
         super(parent, modal);
         initComponents();
+        UserThread userThread = new UserThread(jTable1,serverThread);
+        userThread.start();
     }
 
     /**
@@ -36,9 +41,9 @@ public class DialogUsers extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
-        setBackground(new java.awt.Color(42, 41, 34));
+        setBackground(new java.awt.Color(51, 82, 82));
 
-        jPanel1.setBackground(new java.awt.Color(80, 109, 47));
+        jPanel1.setBackground(new java.awt.Color(212, 221, 225));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(30, 31, 38));
         jPanel1.setPreferredSize(new java.awt.Dimension(190, 27));
@@ -62,7 +67,10 @@ public class DialogUsers extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setBackground(new java.awt.Color(42, 41, 34));
+        jScrollPane1.setBackground(new java.awt.Color(51, 82, 82));
+
+        jTable1.setBackground(new java.awt.Color(212, 221, 225));
+        jTable1.setForeground(new java.awt.Color(45, 48, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -78,56 +86,15 @@ public class DialogUsers extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jButton2.setBackground(new java.awt.Color(212, 221, 225));
         jButton2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(45, 48, 51));
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_exit_24px.png")); // NOI18N
         jButton2.setText("Izbaci klijenta");
         getContentPane().add(jButton2, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DialogUsers dialog = new DialogUsers(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

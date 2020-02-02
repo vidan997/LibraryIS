@@ -32,9 +32,10 @@ public class ClientHandlerThread extends Thread {
     private Socket socket;
     private Klijent loggedUser;
     private Date vremeLogovanja;
-
-    public ClientHandlerThread(Socket socket) {
+    private Server server;
+    public ClientHandlerThread(Socket socket,Server server) {
         this.socket = socket;
+        this.server = server;
     }
 
     @Override
@@ -91,7 +92,7 @@ public class ClientHandlerThread extends Thread {
             loggedUser = user;
             vremeLogovanja = new Date(System.currentTimeMillis());
             response.setData(user);
-            Server.getInstance().dodajKlijenta(this);
+            server.dodajKlijenta(this);
         } catch (LogInException e) {
             e.printStackTrace();
             response.setException(e);
@@ -195,6 +196,7 @@ public class ClientHandlerThread extends Thread {
         return loggedUser;
     }
 
-    
-
+    public Date getVremDate(){
+        return vremeLogovanja;
+    }
 }

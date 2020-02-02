@@ -6,11 +6,16 @@
 package threads;
 
 import controller.Controller;
+import domain.Klijent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import view.MainFrame;
 
 /**
  *
@@ -18,32 +23,25 @@ import java.util.List;
  */
 public class Server extends Thread {
 
-    private ServerSocket serverSocket;
+    private static ServerSocket serverSocket;
     private List<ClientHandlerThread> clientHandlers;
 
-    private static Server instance;
 
-    private Server() throws IOException {
+    public Server() throws IOException {
         serverSocket = new ServerSocket(9000);//todo
         clientHandlers = new ArrayList<>();
     }
 
-    public static Server getInstance() throws IOException {
-        if (instance == null) {
-            instance = new Server();
-        }
-        return instance;
-    }
 
     @Override
     public void run() {
         while (!serverSocket.isClosed()) {
             try {
                 Socket socket = serverSocket.accept();
-                ClientHandlerThread clientHandler = new ClientHandlerThread(socket);
+                ClientHandlerThread clientHandler = new ClientHandlerThread(socket,this);
                 clientHandler.start();
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("Server je ugasen.");
             }
         }
         stopAllClientHandlers();
@@ -71,4 +69,13 @@ public class Server extends Thread {
         clientHandlers.add(clientHandler);
         System.out.println(clientHandler.getLoggedUser().getIme() + " " + clientHandler.getLoggedUser().getPrezime() + "se konektovao.");
     }
+
+    public HashMap<Klijent, Date> vratiKlijente() {
+        HashMap<Klijent, Date> map = new HashMap<>();
+        for (ClientHandlerThread clientHandler : clientHandlers) {
+            map.put(clientHandler.getLoggedUser(), clientHandler.getVremDate());
+        }
+        return map;
+    }
+
 }

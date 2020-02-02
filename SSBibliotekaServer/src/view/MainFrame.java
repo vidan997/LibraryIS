@@ -1,5 +1,10 @@
 package view;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import threads.Server;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,8 +19,10 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form mainFrame
      */
+    Server serverThread;
     public MainFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,27 +37,32 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnStart = new javax.swing.JButton();
+        btnStop = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(208, 225, 249));
+        setBackground(new java.awt.Color(0, 0, 0));
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(80, 109, 47));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBackground(new java.awt.Color(212, 221, 225));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 2));
         jPanel1.setForeground(new java.awt.Color(30, 31, 38));
-        jPanel1.setPreferredSize(new java.awt.Dimension(190, 27));
+        jPanel1.setPreferredSize(new java.awt.Dimension(190, 29));
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_delete_16px.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 138, Short.MAX_VALUE)
+                .addGap(0, 136, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
         jPanel1Layout.setVerticalGroup(
@@ -62,39 +74,57 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(42, 41, 34));
+        jPanel2.setBackground(new java.awt.Color(51, 82, 82));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 2));
         jPanel2.setPreferredSize(new java.awt.Dimension(190, 180));
 
-        jButton2.setBackground(new java.awt.Color(243, 235, 221));
-        jButton2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_start_24px.png")); // NOI18N
-        jButton2.setText("Pokreni server");
+        btnStart.setBackground(new java.awt.Color(212, 221, 225));
+        btnStart.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnStart.setForeground(new java.awt.Color(45, 48, 51));
+        btnStart.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_start_24px.png")); // NOI18N
+        btnStart.setText("Pokreni server");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(243, 235, 221));
-        jButton3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_stop_26px.png")); // NOI18N
-        jButton3.setText("Zaustavi server");
-        jButton3.setEnabled(false);
+        btnStop.setBackground(new java.awt.Color(212, 221, 225));
+        btnStop.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnStop.setForeground(new java.awt.Color(45, 48, 51));
+        btnStop.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_stop_26px.png")); // NOI18N
+        btnStop.setText("Zaustavi server");
+        btnStop.setEnabled(false);
+        btnStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStopActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(243, 235, 221));
+        jButton4.setBackground(new java.awt.Color(212, 221, 225));
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaServer\\src\\images\\icons8_user_24px.png")); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+            .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStop, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -104,10 +134,43 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       new DialogUsers(this,true,serverThread).setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        if(serverThread==null || !serverThread.isAlive()){
+        try {
+            serverThread= new Server();
+            serverThread.start();
+            btnStart.setEnabled(false);
+            btnStop.setEnabled(true);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
+        if(serverThread!=null && serverThread.isServerBound()){
+            try {
+                serverThread.stopServer();
+                btnStart.setEnabled(true);
+                btnStop.setEnabled(false);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnStopActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       System.exit(1);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnStop;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

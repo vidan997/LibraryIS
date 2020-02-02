@@ -8,7 +8,6 @@ package main;
 import java.awt.BorderLayout;
 import ui.view.main.MainFrame;
 import javax.swing.JFrame;
-import ui.controller.Controller;
 import ui.view.logIn.MainPanelLog;
 
 /**
@@ -18,12 +17,8 @@ import ui.view.logIn.MainPanelLog;
 public class Main {
     
     public static void main(String[] args) {
-        Controller controller = new Controller(new MainPanelLog());
-        MainFrame frame = new MainFrame();
-        frame.add(controller.getPanel(),BorderLayout.CENTER);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
     }
     
 }

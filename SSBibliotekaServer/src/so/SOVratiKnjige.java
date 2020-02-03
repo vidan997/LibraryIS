@@ -27,7 +27,7 @@ public class SOVratiKnjige extends OpstaSistemskaOperacija {
         List<OpstiDomenskiObjekat> knjige = new ArrayList<>();
         ResultSet rs = dbbr.select(odo);
         while (rs.next()) {
-            Knjiga klijent = new Knjiga(rs.getInt("SifraK"), rs.getString("Naziv"), rs.getString("Izdavalac"), rs.getDate("DatumIzdavanja"), rs.getString("Sadrzaj"), rs.getInt("BrojStranica"), Jezik.SRPSKI, null, null);
+            Knjiga klijent = new Knjiga(rs.getLong("SifraK"), rs.getString("Naziv"), rs.getString("Izdavalac"), rs.getDate("DatumIzdavanja"), rs.getString("Sadrzaj"), rs.getInt("BrojStranica"), Jezik.SRPSKI, null, null);
             knjige.add(klijent);
         }
         rs.close();

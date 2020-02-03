@@ -51,7 +51,7 @@ public class SOPrijavaNaSistem extends OpstaSistemskaOperacija {
             rs = dbbr.select(administrator);
             List<Administrator> proveraA = new ArrayList<>();
             while (rs.next()) {
-                Administrator administratoradd = new Administrator(rs.getInt("SifraA"), rs.getInt("JMBG"),rs.getString("Ime"), rs.getString("Prezime"), rs.getDate("DatumRodjenja"), rs.getDate("DatumZaposlenja"), rs.getString("Username"), rs.getString("Password"));
+                Administrator administratoradd = new Administrator(rs.getLong("SifraA"), rs.getInt("JMBG"),rs.getString("Ime"), rs.getString("Prezime"), rs.getDate("DatumRodjenja"), rs.getDate("DatumZaposlenja"), rs.getString("Username"), rs.getString("Password"));
                 proveraA.add(administratoradd);
             }
             rs.close();

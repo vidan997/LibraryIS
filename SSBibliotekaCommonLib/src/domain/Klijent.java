@@ -6,25 +6,26 @@
 package domain;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author vidan
  */
-public class Klijent implements OpstiDomenskiObjekat {
+public class Klijent implements OpstiDomenskiObjekat,Serializable {
 
     private Long sifraKL;
-    private int jmbg;
-    private String ime;
-    private String prezime;
-    private Date datumRodjenja;
+    protected int jmbg;
+    protected String ime;
+    protected String prezime;
+    protected Date datumRodjenja;
     private Date clanarina;
     private boolean isteklaClanarina;
     private int kontakt;
     private Image slika;
-    private String userName;
-    private String password;
+    protected String userName;
+    protected String password;
 
     public Klijent() {
     }
@@ -156,8 +157,8 @@ public class Klijent implements OpstiDomenskiObjekat {
 
     @Override
     public String dajVrednostiAtributa() {
-        return sifraKL+", "+jmbg+", '"+ime+"', '"+prezime+"', '"+new java.sql.Date(datumRodjenja.getTime())+
-                "', '"+new java.sql.Date(clanarina.getTime())+"', "+isteklaClanarina+", "+kontakt+"', "+userName+"', '"+password+"'";
+        return sifraKL+", "+jmbg+", '"+ime+"', '"+prezime+"', '"+new java.sql.Date(datumRodjenja.getYear(), datumRodjenja.getMonth(), datumRodjenja.getDay())+
+                "', '"+new java.sql.Date(clanarina.getYear(), clanarina.getMonth(), clanarina.getDay())+"', "+isteklaClanarina+", "+kontakt+", '"+userName+"', '"+password+"'";
     }
 
     @Override
@@ -167,13 +168,14 @@ public class Klijent implements OpstiDomenskiObjekat {
 
     @Override
     public void setId(Object id) {
-        this.sifraKL=(Long)id;
+        this.sifraKL=(Long) id;
     }
 
     @Override
     public void dajUslov() {
         //
     }
+    
 
     
 }

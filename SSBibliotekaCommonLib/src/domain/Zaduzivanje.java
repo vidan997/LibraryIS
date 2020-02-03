@@ -5,13 +5,14 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author vidan
  */
-public class Zaduzivanje implements OpstiDomenskiObjekat{
+public class Zaduzivanje implements OpstiDomenskiObjekat,Serializable{
     
     private Klijent klijent;
     private PrimerakKnjige knjiga;

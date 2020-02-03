@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author vidan
  */
-public class Knjiga implements OpstiDomenskiObjekat{
+public class Knjiga implements OpstiDomenskiObjekat,Serializable{
 
     private Long sifraK;
     private String naziv;

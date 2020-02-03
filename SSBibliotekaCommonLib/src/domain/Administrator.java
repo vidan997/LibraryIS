@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,14 +14,14 @@ import java.util.Date;
  *
  * @author vidan
  */
-public class Administrator implements OpstiDomenskiObjekat {
+public class Administrator implements OpstiDomenskiObjekat,Serializable {
 
     private Long sifraA;
+    private Date datumZaposlenja;
     private int jmbg;
     private String ime;
     private String prezime;
     private Date datumRodjenja;
-    private Date datumZaposlenja;
     private String userName;
     private String password;
 
@@ -138,6 +139,12 @@ public class Administrator implements OpstiDomenskiObjekat {
     @Override
     public void dajUslov() {
         //
+    }
+
+    @Override
+    public String toString() {
+        return "Administrator: "+ime+" "+prezime;
+        
     }
 
     

@@ -5,11 +5,13 @@
  */
 package domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vidan
  */
-public class PrimerakKnjige implements OpstiDomenskiObjekat{
+public class PrimerakKnjige implements OpstiDomenskiObjekat,Serializable{
 
     private Knjiga knjiga;
     private int invertacioniBr;

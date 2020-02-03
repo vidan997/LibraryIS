@@ -5,11 +5,13 @@
  */
 package domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vidan
  */
-public class Autor implements OpstiDomenskiObjekat{
+public class Autor implements OpstiDomenskiObjekat,Serializable{
     private Long sifraA;
     private String imePrezime;
     private boolean domaci;
@@ -76,6 +78,11 @@ public class Autor implements OpstiDomenskiObjekat{
     @Override
     public void setId(Object id) {
         //
+    }
+
+    @Override
+    public String toString() {
+        return imePrezime;
     }
     
     

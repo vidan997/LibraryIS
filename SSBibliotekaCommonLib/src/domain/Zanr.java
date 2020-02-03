@@ -5,11 +5,13 @@
  */
 package domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vidan
  */
-public class Zanr implements OpstiDomenskiObjekat{
+public class Zanr implements OpstiDomenskiObjekat,Serializable{
     
     private Long sifraZ;
     private String tip;
@@ -66,6 +68,11 @@ public class Zanr implements OpstiDomenskiObjekat{
     @Override
     public void dajUslov() {
         //
+    }
+
+    @Override
+    public String toString() {
+        return tip;
     }
 
     

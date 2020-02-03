@@ -5,6 +5,7 @@
  */
 package domain;
 
+
 /**
  *
  * @author vidan

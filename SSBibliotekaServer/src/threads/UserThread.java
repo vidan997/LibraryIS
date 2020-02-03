@@ -6,6 +6,7 @@
 package threads;
 
 import domain.Klijent;
+import domain.OpstiDomenskiObjekat;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,17 +33,17 @@ public class UserThread extends Thread {
 
     @Override
     public synchronized void start() {
-        HashMap<Klijent, Date> hashmap = serverThread.vratiKlijente();
+        HashMap<OpstiDomenskiObjekat, Date> hashmap = serverThread.vratiKlijente();
         table.setModel(tableModel(hashmap));
     }
 
-    public TableModel tableModel(HashMap<Klijent, Date> map) {
+    public TableModel tableModel(HashMap<OpstiDomenskiObjekat, Date> map) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         DefaultTableModel model = new DefaultTableModel(
                 new Object[]{"Klijent", "Vreme logovanja"}, 0
         );
-        for (Map.Entry<Klijent, Date> entry : map.entrySet()) {
-            model.addRow(new Object[]{entry.getKey().getIme() + " " + entry.getKey().getPrezime(), simpleDateFormat.format(entry.getValue().getTime())});
+        for (Map.Entry<OpstiDomenskiObjekat, Date> entry : map.entrySet()) {
+            model.addRow(new Object[]{entry.getKey().toString(), simpleDateFormat.format(entry.getValue().getTime())});
         }
         return model;
     }

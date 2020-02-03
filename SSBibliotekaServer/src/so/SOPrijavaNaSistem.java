@@ -5,6 +5,7 @@
  */
 package so;
 
+import domain.Administrator;
 import domain.Klijent;
 import domain.OpstiDomenskiObjekat;
 import exception.LogInException;
@@ -29,16 +30,16 @@ public class SOPrijavaNaSistem extends OpstaSistemskaOperacija {
     public void izvrsenjeOperacije() throws LogInException {
         try {
             List<Klijent> provera = new ArrayList<>();
+            
+            Klijent klijent = (Klijent) odo;
             ResultSet rs = dbbr.select(odo);
             
             while (rs.next()) {
-                Klijent klijent = new Klijent(rs.getLong("SifraKL"), rs.getInt("JMBG"), rs.getString("Ime"), rs.getString("Prezime"), rs.getDate("DatumRodjenja")
+                Klijent klijentadd = new Klijent(rs.getLong("SifraKL"), rs.getInt("JMBG"), rs.getString("Ime"), rs.getString("Prezime"), rs.getDate("DatumRodjenja")
                         , rs.getDate("Clanarina"), rs.getBoolean("IsteklaClanarina"), rs.getInt("Kontakt"), null, rs.getString("Username"), rs.getString("Password"));
-                provera.add(klijent);
+                provera.add(klijentadd);
             }
             rs.close();
-            
-            Klijent klijent = (Klijent) odo;
             
             for (Klijent obj : provera) {
                 if (klijent.getUserName().equals(obj.getUserName()) && klijent.getPassword().equals(obj.getPassword())) {
@@ -46,10 +47,25 @@ public class SOPrijavaNaSistem extends OpstaSistemskaOperacija {
                     return;
                 }
             }
-            throw new LogInException("Ne postoji korisnik sa tim korisnickim imenom i lozinkom");
+            Administrator administrator = new Administrator();
+            rs = dbbr.select(administrator);
+            List<Administrator> proveraA = new ArrayList<>();
+            while (rs.next()) {
+                Administrator administratoradd = new Administrator(rs.getInt("SifraA"), rs.getInt("JMBG"),rs.getString("Ime"), rs.getString("Prezime"), rs.getDate("DatumRodjenja"), rs.getDate("DatumZaposlenja"), rs.getString("Username"), rs.getString("Password"));
+                proveraA.add(administratoradd);
+            }
+            rs.close();
+            
+            for (Administrator obj : proveraA) {
+                if (klijent.getUserName().equals(obj.getUserName()) && klijent.getPassword().equals(obj.getPassword())) {
+                    odo = obj;
+                    return;
+                }
+            }
         } catch (Exception ex) {
-            throw new LogInException("Konekcija sa bazon nije uspostavljena.");
+            ex.printStackTrace();
+            throw new LogInException("Konekcija sa bazom nije uspostavljena.");
         }
-    }
-
+        throw new LogInException("Losa sifra ili username.");
+    }    
 }

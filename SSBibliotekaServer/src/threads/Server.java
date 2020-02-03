@@ -7,6 +7,7 @@ package threads;
 
 import controller.Controller;
 import domain.Klijent;
+import domain.OpstiDomenskiObjekat;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -67,15 +68,24 @@ public class Server extends Thread {
 
     void dodajKlijenta(ClientHandlerThread clientHandler) {
         clientHandlers.add(clientHandler);
-        System.out.println(clientHandler.getLoggedUser().getIme() + " " + clientHandler.getLoggedUser().getPrezime() + "se konektovao.");
+        System.out.println(clientHandler.getLoggedUser().toString() + " se konektovao.");
     }
 
-    public HashMap<Klijent, Date> vratiKlijente() {
-        HashMap<Klijent, Date> map = new HashMap<>();
+    public HashMap<OpstiDomenskiObjekat, Date> vratiKlijente() {
+        HashMap<OpstiDomenskiObjekat, Date> map = new HashMap<>();
         for (ClientHandlerThread clientHandler : clientHandlers) {
             map.put(clientHandler.getLoggedUser(), clientHandler.getVremDate());
         }
         return map;
+    }
+
+    void izbaci(ClientHandlerThread client) {
+        for (ClientHandlerThread clientHandler : clientHandlers) {
+            if(clientHandler.getLoggedUser().equals(client.getLoggedUser())){
+                clientHandlers.remove(clientHandler);
+            }
+        }
+    
     }
 
 }

@@ -19,6 +19,7 @@ import so.SONovaKnjiga;
 import so.SOPrijavaNaSistem;
 import so.SOVratiKnjige;
 import so.SOZaduzivanjeKnjige;
+import validator.impl.ValidatorKlijent;
 
 /**
  *
@@ -38,13 +39,13 @@ public class Controller {
         return instance;
     }
 
-    public Klijent logIn(String username, String password) throws LogInException, Exception {
+    public OpstiDomenskiObjekat logIn(String username, String password) throws LogInException, Exception {
         Klijent klijent = new Klijent();
         klijent.setUserName(username);
         klijent.setPassword(password);
         OpstaSistemskaOperacija oso = new SOPrijavaNaSistem(klijent);
         oso.opsteIzvrsenje();
-        return (Klijent) oso.getOdo();
+        return oso.getOdo();
     }
     
     public Knjiga novaKnjiga(Knjiga knjiga) throws Exception{
@@ -54,7 +55,7 @@ public class Controller {
     }
 
     public Klijent novKlijent(Klijent klijent) throws Exception {
-        OpstaSistemskaOperacija oso = new SONovKlijent(klijent);
+        OpstaSistemskaOperacija oso = new SONovKlijent(klijent, new ValidatorKlijent());
         oso.opsteIzvrsenje();
         return (Klijent) oso.getOdo();
     }

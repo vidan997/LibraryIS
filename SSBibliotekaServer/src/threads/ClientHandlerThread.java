@@ -6,6 +6,7 @@
 package threads;
 
 import controller.Controller;
+import domain.Administrator;
 import domain.Klijent;
 import domain.Knjiga;
 import domain.OpstiDomenskiObjekat;
@@ -31,9 +32,11 @@ public class ClientHandlerThread extends Thread {
 
     private Socket socket;
     private Klijent loggedUser;
+    private Administrator loggedAdmin;
     private Date vremeLogovanja;
     private Server server;
-    public ClientHandlerThread(Socket socket,Server server) {
+
+    public ClientHandlerThread(Socket socket, Server server) {
         this.socket = socket;
         this.server = server;
     }
@@ -77,7 +80,11 @@ public class ClientHandlerThread extends Thread {
                 }
                 sendResponse(response);
             } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    socket.close();
+                    server.izbaci(this);
+                } catch (IOException ex) {
+                }
             }
         }
     }
@@ -86,12 +93,19 @@ public class ClientHandlerThread extends Thread {
         Map<String, String> data = (Map<String, String>) request.getData();
         String username = (String) data.get("username");
         String password = (String) data.get("password");
+        String adminKlijent = (String) data.get("adminKlijent");
         ResponseObject response = new ResponseObject();
         try {
-            Klijent user = Controller.getInstance().logIn(username, password);
-            loggedUser = user;
+            if (adminKlijent.equals("klijent")) {
+                Klijent user = (Klijent) Controller.getInstance().logIn(username, password);
+                response.setData(user);
+                loggedUser = user;
+            }else if(adminKlijent.equals("admin")){
+                Administrator administrator = (Administrator) Controller.getInstance().logIn(username, password);
+                response.setData(administrator);
+                loggedAdmin = administrator;
+            }
             vremeLogovanja = new Date(System.currentTimeMillis());
-            response.setData(user);
             server.dodajKlijenta(this);
         } catch (LogInException e) {
             e.printStackTrace();
@@ -168,7 +182,7 @@ public class ClientHandlerThread extends Thread {
     private ResponseObject izmeniKnjigu(RequestObject request) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     private ResponseObject nadjiKlijenta(RequestObject request) throws Exception {
         Klijent klijent = (Klijent) request.getData();
         ResponseObject response = new ResponseObject();
@@ -192,11 +206,14 @@ public class ClientHandlerThread extends Thread {
         socket.close();
     }
 
-    public Klijent getLoggedUser() {
+    public OpstiDomenskiObjekat getLoggedUser() {
+        if(loggedUser==null){
+            return loggedAdmin;
+        }
         return loggedUser;
     }
 
-    public Date getVremDate(){
+    public Date getVremDate() {
         return vremeLogovanja;
     }
 }

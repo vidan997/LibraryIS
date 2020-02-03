@@ -5,12 +5,17 @@
  */
 package communication;
 
+import domain.Autor;
 import domain.Klijent;
+import domain.OpstiDomenskiObjekat;
+import domain.Zanr;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import transfer.RequestObject;
 import transfer.ResponseObject;
@@ -35,39 +40,57 @@ public class CommunicationController {
         }
         return instance;
     }
-    
-    public Klijent logIn(String username, String password) throws Exception{
-        RequestObject request=new RequestObject();
+
+    public OpstiDomenskiObjekat logIn(String username, String password, String klijentAdmin) throws Exception {
+        RequestObject request = new RequestObject();
         request.setOperation(Operation.OPERATION_LOGIN);
-        
-        Map<String, String> data=new HashMap<>();
+
+        Map<String, String> data = new HashMap<>();
         data.put("username", username);
         data.put("password", password);
+        data.put("adminKlijent", klijentAdmin);
         request.setData(data);
-        
+
         sendRequest(request);
-        
-        ResponseObject response=receiveResponse();
-        if(response.getException()!=null){
+
+        ResponseObject response = receiveResponse();
+        if (response.getException() != null) {
             throw response.getException();
         }
-        
-        return (Klijent)response.getData();
+
+        return (OpstiDomenskiObjekat) response.getData();
     }
-    
-    
-    
-    
-    private void sendRequest(RequestObject request) throws IOException{
-        ObjectOutputStream out=new ObjectOutputStream(socket.getOutputStream());
+
+    public Klijent sacuvajNovogKlijenta(Klijent klijent) throws Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_DODAJ_NOVOG);
+        request.setData(klijent);
+        sendRequest(request);
+        ResponseObject response = receiveResponse();
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+        return (Klijent) response.getData();
+    }
+
+    private void sendRequest(RequestObject request) throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.writeObject(request);
         out.flush();
     }
-    
-    private ResponseObject receiveResponse() throws IOException, ClassNotFoundException{
-        ObjectInputStream in=new ObjectInputStream(socket.getInputStream());
-        ResponseObject response=(ResponseObject)in.readObject();
+
+    private ResponseObject receiveResponse() throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+        ResponseObject response = (ResponseObject) in.readObject();
         return response;
+    }
+
+    public List<Zanr> vratiZanrove() {
+        return new ArrayList<>();
+    }
+
+    public List<Autor> vratiAutore() {
+        return new ArrayList<>();
     }
 
 }

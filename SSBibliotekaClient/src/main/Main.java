@@ -5,10 +5,9 @@
  */
 package main;
 
-import java.awt.BorderLayout;
-import ui.view.main.MainFrame;
-import javax.swing.JFrame;
-import ui.view.logIn.MainPanelLog;
+import ui.view.administrator.MainFrameA;
+import ui.view.klijent.MainFrame;
+import ui.view.logIn.MainFormLogIn;
 
 /**
  *
@@ -17,7 +16,7 @@ import ui.view.logIn.MainPanelLog;
 public class Main {
     
     public static void main(String[] args) {
-        MainFrame main = new MainFrame();
+        MainFormLogIn main = new MainFormLogIn();
         main.setVisible(true);
     }
     

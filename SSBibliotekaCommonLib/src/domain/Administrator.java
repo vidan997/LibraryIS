@@ -137,8 +137,8 @@ public class Administrator implements OpstiDomenskiObjekat,Serializable {
     }
 
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraA = ";
     }
 
     @Override
@@ -147,6 +147,24 @@ public class Administrator implements OpstiDomenskiObjekat,Serializable {
         
     }
 
-    
+    @Override
+    public String dajKljuc() {
+        return "SifraA = "+sifraA;
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return sifraA;
+    }
+
+    @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -12,8 +12,8 @@ import java.util.Date;
  *
  * @author vidan
  */
-public class Zaduzivanje implements OpstiDomenskiObjekat,Serializable{
-    
+public class Zaduzivanje implements OpstiDomenskiObjekat, Serializable {
+
     private Klijent klijent;
     private PrimerakKnjige knjiga;
     private boolean odobreno;
@@ -113,7 +113,7 @@ public class Zaduzivanje implements OpstiDomenskiObjekat,Serializable{
 
     @Override
     public String dajVrednostiAtributa() {
-        return klijent.getSifraKL()+", "+knjiga.getKnjiga().getSifraK()+", "+knjiga.getInvertacioniBr()+", "+odobreno+", '"+new java.sql.Date(datumZaduzivanja.getTime())+"', '"+new java.sql.Date(doDatuma.getTime())+"', '"+new java.sql.Date(datumRazduzivanja.getTime())+"', "+prekoracen+", "+administrator.getSifraA();
+        return klijent.getSifraKL() + ", " + knjiga.getKnjiga().getSifraK() + ", " + knjiga.getInvertacioniBr() + ", " + (odobreno ? 1 : 0)+ ", '" + new java.sql.Date(datumZaduzivanja.getTime()) + "', '" + new java.sql.Date(doDatuma.getTime()) + "', '" + new java.sql.Date(datumRazduzivanja.getTime()) + "', " + prekoracen + ", " + administrator.getSifraA();
     }
 
     @Override
@@ -125,11 +125,30 @@ public class Zaduzivanje implements OpstiDomenskiObjekat,Serializable{
     public void setId(Object id) {
         //
     }
-    
+
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraKL = ";
     }
 
-    
+    @Override
+    public String dajKljuc() {
+        return "SifraKL = "+klijent.getSifraKL()+" AND SifraK = "+knjiga.getKnjiga().getSifraK()+" AND InvertacioniBr = "+knjiga.getInvertacioniBr();
+    }
+
+    @Override
+    public String join() {
+        return "k.SifraK AS SifraKnjige, k.InvertacioniBr AS InvertacioniBroj ,k.Zaduzena AS Zaduzena, kn.Naziv AS Naziv, z.Odobreno AS Odobreno, z.DatumZaduzivanja AS DatumZaduzivanja, z.DoDatuma AS DoDatuma, z.DatumRazduzivanja AS DatumRazduzivanja, z.Prekoracen AS Prekoracen FROM Zaduzivanje z JOIN primerakknjige k ON z.InvertacioniBr = k.InvertacioniBr JOIN knjiga kn ON kn.SifraK = k.SifraK WHERE z.SifraKL =";
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return null;
+    }
+
+    @Override
+    public String update() {
+        return "SifraKL = "+klijent.getSifraKL()+", SifraK = "+knjiga.getKnjiga().getSifraK()+", InvertacioniBr = "+knjiga.getInvertacioniBr()+", Odobreno = "+(odobreno ? 1 : 0)+", DatumZaduzivanja = "+ new java.sql.Date(datumZaduzivanja.getTime()) +", DoDatuma = "+ new java.sql.Date(doDatuma.getTime()) +", DatumRazduzivanja = "+ new java.sql.Date(datumRazduzivanja.getTime()) +", Prekoracen = "+(prekoracen ? 1 : 0)+", SifraA = "+administrator.getSifraA();
+    }
+
 }

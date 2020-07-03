@@ -61,6 +61,11 @@ public class PrimerakKnjige implements OpstiDomenskiObjekat,Serializable{
     }
 
     @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String dajVrednostiAtributa() {
         return knjiga.getSifraK()+", "+invertacioniBr+", "+zaduzena;
     }
@@ -76,8 +81,23 @@ public class PrimerakKnjige implements OpstiDomenskiObjekat,Serializable{
     }
     
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraK = ";
+    }
+
+    @Override
+    public String dajKljuc() {
+        return "SifraK = "+knjiga.getSifraK()+" AND InvertacioniBr = "+invertacioniBr;
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return null;
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

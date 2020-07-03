@@ -21,7 +21,10 @@ public class Operation implements Serializable{
     public static final int OPERATION_DODAJ_NOVOG=5;
     public static final int OPERATION_DODAJ_NOVU_KNJIGU=6;
     public static final int OPERATION_BRISI_KNJIGU=7;
-    public static final int OPERATION_UNOS_CLANARINE=8;
+    public static final int OPERATION_IZMENA_KLIJENTA=8;
     public static final int OPERATION_IZMENA_KNJIGE=9;
     public static final int OPERATION_PRETRAZI_KLIJENTA=10;
+    public static final int OPERATION_VRATI_ZANROVE=11;
+    public static final int OPERATION_VRATI_AUTORE=12;
+    public static final int OPERATION_VRATI_ZADUZIVANJA=13;
 }

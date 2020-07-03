@@ -66,8 +66,8 @@ public class Zanr implements OpstiDomenskiObjekat,Serializable{
     }
     
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraZ = ";
     }
 
     @Override
@@ -75,5 +75,24 @@ public class Zanr implements OpstiDomenskiObjekat,Serializable{
         return tip;
     }
 
+    @Override
+    public String dajKljuc() {
+        return "SifraZ = "+sifraZ;
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return sifraZ;
+    }
+
+    @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

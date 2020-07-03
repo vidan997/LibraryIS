@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author vidan
  */
-public class Klijent implements OpstiDomenskiObjekat,Serializable {
+public class Klijent implements OpstiDomenskiObjekat, Serializable {
 
     private Long sifraKL;
     protected int jmbg;
@@ -157,8 +157,8 @@ public class Klijent implements OpstiDomenskiObjekat,Serializable {
 
     @Override
     public String dajVrednostiAtributa() {
-        return sifraKL+", "+jmbg+", '"+ime+"', '"+prezime+"', '"+new java.sql.Date(datumRodjenja.getYear(), datumRodjenja.getMonth(), datumRodjenja.getDay())+
-                "', '"+new java.sql.Date(clanarina.getYear(), clanarina.getMonth(), clanarina.getDay())+"', "+isteklaClanarina+", "+kontakt+", '"+userName+"', '"+password+"'";
+        return sifraKL + ", " + jmbg + ", '" + ime + "', '" + prezime + "', '" + new java.sql.Date(datumRodjenja.getYear(), datumRodjenja.getMonth(), datumRodjenja.getDay())
+                + "', '" + new java.sql.Date(clanarina.getYear(), clanarina.getMonth(), clanarina.getDay()) + "', " + isteklaClanarina + ", " + kontakt + ", '" + userName + "', '" + password + "'";
     }
 
     @Override
@@ -168,14 +168,32 @@ public class Klijent implements OpstiDomenskiObjekat,Serializable {
 
     @Override
     public void setId(Object id) {
-        this.sifraKL=(Long) id;
+        this.sifraKL = (Long) id;
     }
 
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraKL";
     }
-    
 
-    
+    @Override
+    public String dajKljuc() {
+        return "SifraKL = "+sifraKL;
+    }
+
+    @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return sifraKL;
+    }
+
+    @Override
+    public String update() {
+        return "SifraKL = "+sifraKL+", JMBG = "+jmbg+", Ime = "+ime+", Prezime = "+prezime+", DatumRodjenja = "+ new java.sql.Date(datumRodjenja.getTime()) +", Clanarina = "+ new java.sql.Date(clanarina.getTime()) +", IsteklaClanarina = "+ 1 +", Username = "+userName+", Password = "+password;
+    }
+
 }

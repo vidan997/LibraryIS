@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author vidan
  */
-public class Autor implements OpstiDomenskiObjekat,Serializable{
+public class Autor implements OpstiDomenskiObjekat, Serializable {
+
     private Long sifraA;
     private String imePrezime;
     private boolean domaci;
@@ -20,11 +21,10 @@ public class Autor implements OpstiDomenskiObjekat,Serializable{
     }
 
     @Override
-    public void dajUslov() {
-        //
+    public String dajUslov() {
+        return "WHERE SifraA = ";
     }
 
-    
     public Autor(Long SifraA, String ImePrezime, boolean Domaci) {
         this.sifraA = SifraA;
         this.imePrezime = ImePrezime;
@@ -67,7 +67,7 @@ public class Autor implements OpstiDomenskiObjekat,Serializable{
 
     @Override
     public String dajVrednostiAtributa() {
-        return sifraA+", '"+imePrezime+"', "+domaci;
+        return sifraA + ", '" + imePrezime + "', " + domaci;
     }
 
     @Override
@@ -84,6 +84,25 @@ public class Autor implements OpstiDomenskiObjekat,Serializable{
     public String toString() {
         return imePrezime;
     }
-    
+
+    @Override
+    public String dajKljuc() {
+        return "SifraA = "+sifraA;
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return sifraA;
+    }
+
+    @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

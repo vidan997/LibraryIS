@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author vidan
  */
-public class Knjiga implements OpstiDomenskiObjekat,Serializable{
+public class Knjiga implements OpstiDomenskiObjekat, Serializable {
 
     private Long sifraK;
     private String naziv;
@@ -24,6 +24,7 @@ public class Knjiga implements OpstiDomenskiObjekat,Serializable{
     private Jezik jezik;
     private List<Zanr> zanr;
     private List<Autor> autor;
+
     public Knjiga() {
     }
 
@@ -38,9 +39,6 @@ public class Knjiga implements OpstiDomenskiObjekat,Serializable{
         this.zanr = Zanr;
         this.autor = Autor;
     }
-
-
-    
 
     public Long getSifraK() {
         return sifraK;
@@ -126,23 +124,43 @@ public class Knjiga implements OpstiDomenskiObjekat,Serializable{
 
     @Override
     public String dajVrednostiAtributa() {
-        return sifraK+", '"+naziv+"' ,'"+izdavalac+"', '"+new java.sql.Date(datumIzdavanja.getTime())+"', '"+sadrzaj+"', "+brojStranica+", '"+jezik.toString()+"'";
+        return sifraK + ", '" + naziv + "' ,'" + izdavalac + "', '" + new java.sql.Date(datumIzdavanja.getTime()) + "', '" + sadrzaj + "', " + brojStranica + ", '" + jezik.toString() + "'";
     }
 
     @Override
     public boolean isAutoincrement() {
-        return false;
+        return true;
     }
 
     @Override
     public void setId(Object id) {
-        //
-    }
-    
-    @Override
-    public void dajUslov() {
-        //
+        this.sifraK = (Long) id;
     }
 
-    
+    @Override
+    public String dajUslov() {
+        return "WHERE SifraK = ";
+    }
+
+    @Override
+    public String dajKljuc() {
+        return "SifraK = "+sifraK;
+
+    }
+
+    @Override
+    public String join() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Long dajVrednostiKljuca() {
+        return sifraK;
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

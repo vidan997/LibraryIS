@@ -15,7 +15,11 @@ public interface OpstiDomenskiObjekat {
     public String dajNazivTabele();
     public String dajNaziveAtributa();
     public String dajVrednostiAtributa();
+    public String dajKljuc();
+    public String join();
+    public String update();
+    public Long dajVrednostiKljuca();
     public boolean isAutoincrement();
     public void setId(Object id);
-    public void dajUslov();
+    public String dajUslov();
 }

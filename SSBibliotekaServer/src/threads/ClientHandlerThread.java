@@ -60,7 +60,7 @@ public class ClientHandlerThread extends Thread {
                     case Operation.OPERATION_VRATI_KNJIGE:
                         response = vratiKnjige();
                         break;
-                    case Operation.OPERATION_UNOS_CLANARINE:
+                    case Operation.OPERATION_IZMENA_KLIJENTA:
                         response = unosClanarine(request);
                         break;
                     case Operation.OPERATION_BRISI_KNJIGU:
@@ -77,6 +77,16 @@ public class ClientHandlerThread extends Thread {
                         break;
                     case Operation.OPERATION_PRETRAZI_KLIJENTA:
                         response = nadjiKlijenta(request);
+                        break;
+                    case Operation.OPERATION_VRATI_ZANROVE:
+                        response = vratiZanrove();
+                        break;
+                    case Operation.OPERATION_VRATI_AUTORE:
+                        response = vratiAutore();
+                        break;
+                    case Operation.OPERATION_VRATI_ZADUZIVANJA:
+                        response = vratiZaduzivanja(request);
+                        break;
                 }
                 sendResponse(response);
             } catch (Exception e) {
@@ -100,7 +110,7 @@ public class ClientHandlerThread extends Thread {
                 Klijent user = (Klijent) Controller.getInstance().logIn(username, password);
                 response.setData(user);
                 loggedUser = user;
-            }else if(adminKlijent.equals("admin")){
+            } else if (adminKlijent.equals("admin")) {
                 Administrator administrator = (Administrator) Controller.getInstance().logIn(username, password);
                 response.setData(administrator);
                 loggedAdmin = administrator;
@@ -118,7 +128,14 @@ public class ClientHandlerThread extends Thread {
     }
 
     private ResponseObject razduziKnjigu(RequestObject request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResponseObject response = new ResponseObject();
+        try {
+            Controller.getInstance().razduziZ((List<OpstiDomenskiObjekat>) request.getData());
+        } catch (Exception ex) {
+            response.setException(ex);
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return response;
     }
 
     private ResponseObject sacuvajZaduzivanje(RequestObject request) {
@@ -135,7 +152,14 @@ public class ClientHandlerThread extends Thread {
     }
 
     private ResponseObject unosClanarine(RequestObject request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResponseObject response = new ResponseObject();
+        try {
+            Controller.getInstance().unosClanarine((OpstiDomenskiObjekat) request.getData());
+        } catch (Exception ex) {
+            response.setException(ex);
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return response;
     }
 
     private ResponseObject vratiKnjige() {
@@ -154,10 +178,10 @@ public class ClientHandlerThread extends Thread {
     }
 
     private ResponseObject dodajNovogKlijenta(RequestObject request) {
-        Klijent klijent = (Klijent) request.getData();
+        Map<String, String> map = (Map) request.getData();
         ResponseObject response = new ResponseObject();
         try {
-            klijent = Controller.getInstance().novKlijent(klijent);
+            Klijent klijent = Controller.getInstance().novKlijent(map);
             response.setData(klijent);
         } catch (Exception ex) {
             Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,10 +191,10 @@ public class ClientHandlerThread extends Thread {
     }
 
     private ResponseObject dodajNovuKnjigu(RequestObject request) {
-        Knjiga knjiga = (Knjiga) request.getData();
+        Map map = (Map) request.getData();
         ResponseObject response = new ResponseObject();
         try {
-            knjiga = Controller.getInstance().novaKnjiga(knjiga);
+            Knjiga knjiga = Controller.getInstance().novaKnjiga(map);
             response.setData(knjiga);
         } catch (Exception ex) {
             Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,10 +208,34 @@ public class ClientHandlerThread extends Thread {
     }
 
     private ResponseObject nadjiKlijenta(RequestObject request) throws Exception {
-        Klijent klijent = (Klijent) request.getData();
+        String userName = (String) request.getData();
+        Klijent klijent = new Klijent();
+        klijent.setUserName(userName);
         ResponseObject response = new ResponseObject();
         klijent = Controller.getInstance().nadjiKlijenta(klijent);
         response.setData(klijent);
+        return response;
+    }
+
+    private ResponseObject vratiZanrove() {
+        ResponseObject response = new ResponseObject();
+        try {
+            response.setData(Controller.getInstance().vratiZanrove());
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private ResponseObject vratiAutore() {
+        ResponseObject response = new ResponseObject();
+        try {
+            response.setData(Controller.getInstance().vratiAutore());
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
         return response;
     }
 
@@ -207,7 +255,7 @@ public class ClientHandlerThread extends Thread {
     }
 
     public OpstiDomenskiObjekat getLoggedUser() {
-        if(loggedUser==null){
+        if (loggedUser == null) {
             return loggedAdmin;
         }
         return loggedUser;
@@ -216,4 +264,17 @@ public class ClientHandlerThread extends Thread {
     public Date getVremDate() {
         return vremeLogovanja;
     }
+
+    private ResponseObject vratiZaduzivanja(RequestObject request) {
+        ResponseObject response = new ResponseObject();
+        try {
+            Klijent klijent  = (Klijent) request.getData();
+            response.setData(Controller.getInstance().vratiZaduzivanja(klijent));
+        } catch (Exception ex) {
+            Logger.getLogger(ClientHandlerThread.class.getName()).log(Level.SEVERE, null, ex);
+            response.setException(ex);
+        }
+        return response;
+    }
+
 }

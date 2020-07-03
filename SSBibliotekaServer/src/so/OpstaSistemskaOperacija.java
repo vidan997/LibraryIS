@@ -9,6 +9,7 @@ import database.DatabaseBroker;
 import domain.OpstiDomenskiObjekat;
 import exception.ValidationException;
 import java.util.List;
+import java.util.Map;
 import validator.Validator;
 
 /**
@@ -20,7 +21,7 @@ public abstract class OpstaSistemskaOperacija {
     Validator validator;
     OpstiDomenskiObjekat odo;
     List<OpstiDomenskiObjekat> listodo;
-
+    Map<String,String> map;
     public OpstaSistemskaOperacija(OpstiDomenskiObjekat odo) {
         dbbr=new DatabaseBroker();
         this.odo=odo;
@@ -31,6 +32,12 @@ public abstract class OpstaSistemskaOperacija {
         this.listodo = listodo;
     }
 
+    public OpstaSistemskaOperacija(Map<String,String> map,Validator validator){
+        this.map = map;
+        this.validator = validator;
+        dbbr= new DatabaseBroker();
+    }
+    
     public OpstaSistemskaOperacija() {
         dbbr = new DatabaseBroker();
     }
@@ -46,7 +53,7 @@ public abstract class OpstaSistemskaOperacija {
     public void proveriPreduslove() throws ValidationException{
         
         if(validator!=null){
-            validator.validate(odo);
+            odo = (OpstiDomenskiObjekat) validator.validate(map);
         }
     }
     

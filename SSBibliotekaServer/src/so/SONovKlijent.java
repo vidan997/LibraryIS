@@ -7,6 +7,7 @@ package so;
 
 import domain.Klijent;
 import domain.OpstiDomenskiObjekat;
+import java.util.Map;
 import validator.Validator;
 
 /**
@@ -15,9 +16,8 @@ import validator.Validator;
  */
 public class SONovKlijent extends OpstaSistemskaOperacija{
 
-    public SONovKlijent(OpstiDomenskiObjekat odo, Validator validator) {
-        super(odo);
-        this.validator = validator;
+    public SONovKlijent(Map klijent, Validator validator) {
+        super(klijent,validator);
     }
 
     @Override

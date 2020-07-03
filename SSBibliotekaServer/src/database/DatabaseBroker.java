@@ -6,14 +6,12 @@
 package database;
 
 import domain.OpstiDomenskiObjekat;
-import java.util.List;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,4 +110,54 @@ public class DatabaseBroker {
         }
         throw new Exception("Greska pri citanju iz baze!");
     }
+
+    public ResultSet select(OpstiDomenskiObjekat odo, Long uslov) throws Exception {
+        try {
+            String upit = "SELECT " + odo.dajNaziveAtributa() + " FROM " + odo.dajNazivTabele() + " " + odo.dajUslov() + uslov.toString();
+            System.out.println(upit);
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(upit);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        throw new Exception("Greska pri citanju iz baze!");
+    }
+
+    public ResultSet selectJoin(OpstiDomenskiObjekat odo, Long uslov) throws Exception {
+        try {
+            String upit = "SELECT " + odo.join() + uslov.toString();
+            System.out.println(upit);
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(upit);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        throw new Exception("Greska pri citanju iz baze!");
+    }
+
+    public OpstiDomenskiObjekat insertAsoc(OpstiDomenskiObjekat o, OpstiDomenskiObjekat asoc) {
+        try {
+            String upit = "INSERT INTO " + o.dajNazivTabele() + asoc.dajNazivTabele() + " VALUES (" + o.dajVrednostiKljuca() + "," + asoc.dajVrednostiKljuca() + ")";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(upit);
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return o;
+    }
+
+    public void update(OpstiDomenskiObjekat odo) {
+        try {
+            String upit = "UPDATE " + odo.dajNazivTabele() + " SET " + odo.update() + " WHERE " + odo.dajKljuc();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(upit);
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

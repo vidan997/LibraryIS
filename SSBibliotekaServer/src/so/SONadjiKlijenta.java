@@ -8,6 +8,7 @@ package so;
 import domain.Klijent;
 import domain.OpstiDomenskiObjekat;
 import exception.LogInException;
+import exception.ValidationException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,9 @@ public class SONadjiKlijenta extends OpstaSistemskaOperacija{
                     return;
                 }
             }
-            throw new LogInException("Ne postoji korisnik sa tim korisnickim imenom");
+            throw new ValidationException("Ne postoji korisnik sa tim korisnickim imenom");
         } catch (Exception ex) {
-            throw new LogInException("Konekcija sa bazon nije uspostavljena.");
+            throw new ValidationException("Konekcija sa bazon nije uspostavljena.");
         }
     }
 }

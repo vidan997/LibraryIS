@@ -6,27 +6,20 @@
 package so;
 
 import domain.OpstiDomenskiObjekat;
-import java.util.List;
-import so.OpstaSistemskaOperacija;
 
 /**
  *
- * @author vidan
+ * @author Vidan
  */
-public class SORazduzivanjeKnjige extends OpstaSistemskaOperacija{
+public class SOIzmenaKlijenta extends OpstaSistemskaOperacija{
 
-    public SORazduzivanjeKnjige(List<OpstiDomenskiObjekat> odo) {
-        super(odo);
+    public SOIzmenaKlijenta(OpstiDomenskiObjekat klijent) {
+        super(klijent);
     }
 
     @Override
     public void izvrsenjeOperacije() throws Exception {
-        for (OpstiDomenskiObjekat odo : listodo) {
-            dbbr.update(odo);
-        }
+        dbbr.update(odo);
     }
-    
-
-    
     
 }

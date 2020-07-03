@@ -6,11 +6,13 @@
 package validator;
 
 import exception.ValidationException;
+import java.util.Map;
 
 /**
  *
  * @author student1
  */
 public interface Validator {
-    public void validate(Object value) throws ValidationException;
+
+    public Object validate(Map map) throws ValidationException;
 }

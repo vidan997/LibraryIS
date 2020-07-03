@@ -10,16 +10,11 @@ import domain.Knjiga;
 import domain.OpstiDomenskiObjekat;
 import exception.LogInException;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import so.OpstaSistemskaOperacija;
-import so.SONadjiKlijenta;
-import so.SONovKlijent;
-import so.SONovaKnjiga;
-import so.SOPrijavaNaSistem;
-import so.SOVratiKnjige;
-import so.SOZaduzivanjeKnjige;
-import validator.impl.ValidatorKlijent;
+import so.*;
+import validator.impl.*;
 
 /**
  *
@@ -48,13 +43,13 @@ public class Controller {
         return oso.getOdo();
     }
     
-    public Knjiga novaKnjiga(Knjiga knjiga) throws Exception{
-        OpstaSistemskaOperacija oso = new SONovaKnjiga(knjiga);
+    public Knjiga novaKnjiga(Map knjiga) throws Exception{
+        OpstaSistemskaOperacija oso = new SONovaKnjiga(knjiga, new ValidatorKnjiga());
         oso.opsteIzvrsenje();
         return (Knjiga) oso.getOdo();
     }
 
-    public Klijent novKlijent(Klijent klijent) throws Exception {
+    public Klijent novKlijent(Map klijent) throws Exception {
         OpstaSistemskaOperacija oso = new SONovKlijent(klijent, new ValidatorKlijent());
         oso.opsteIzvrsenje();
         return (Klijent) oso.getOdo();
@@ -76,5 +71,33 @@ public class Controller {
         OpstaSistemskaOperacija oso = new SONadjiKlijenta(klijent);
         oso.opsteIzvrsenje();
         return (Klijent) oso.getOdo();
+    }
+
+    public Object vratiZanrove() throws Exception{
+        OpstaSistemskaOperacija oso = new SOVratiZanrove();
+        oso.opsteIzvrsenje();
+        return oso.getListOdo();
+    }
+
+    public Object vratiAutore() throws Exception{
+        OpstaSistemskaOperacija oso = new SOVratiAutore();
+        oso.opsteIzvrsenje();
+        return oso.getListOdo();
+    }
+
+    public Object vratiZaduzivanja(Klijent klijent) throws Exception {
+        OpstaSistemskaOperacija oso = new SOVratiZaduzenja(klijent);
+        oso.opsteIzvrsenje();
+        return oso.getListOdo();
+    }
+
+    public void razduziZ(List<OpstiDomenskiObjekat> zaduzivanja) throws Exception {
+        OpstaSistemskaOperacija oso = new SORazduzivanjeKnjige(zaduzivanja);
+        oso.opsteIzvrsenje();
+    }
+
+    public void unosClanarine(OpstiDomenskiObjekat klijent) throws Exception {
+        OpstaSistemskaOperacija oso = new SOIzmenaKlijenta(klijent);
+        oso.opsteIzvrsenje();
     }
 }

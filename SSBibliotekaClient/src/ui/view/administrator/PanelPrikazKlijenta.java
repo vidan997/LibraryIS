@@ -5,6 +5,10 @@
  */
 package ui.view.administrator;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author vidan
@@ -34,19 +38,21 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tblZad = new javax.swing.JTable();
+        txtPrezime = new javax.swing.JTextField();
+        txtIme = new javax.swing.JTextField();
+        txtDatumR = new javax.swing.JTextField();
+        txtClanarinaDo = new javax.swing.JTextField();
+        txtKontakt = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnProduziClanarinu = new javax.swing.JButton();
+        btnSacuvaj = new javax.swing.JButton();
+        btnTriMeseca = new javax.swing.JButton();
+        btnSestMeseci = new javax.swing.JButton();
+        btnGodinuDana = new javax.swing.JButton();
+        btnRazduzi = new javax.swing.JButton();
+        btnOdobrii = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 82, 82));
 
@@ -74,7 +80,7 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(212, 221, 225));
         jLabel8.setText("Ime:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblZad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,71 +91,81 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblZad);
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(45, 48, 51));
+        txtPrezime.setEditable(false);
+        txtPrezime.setBackground(new java.awt.Color(212, 221, 225));
+        txtPrezime.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtPrezime.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(45, 48, 51));
+        txtIme.setEditable(false);
+        txtIme.setBackground(new java.awt.Color(212, 221, 225));
+        txtIme.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtIme.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(45, 48, 51));
+        txtDatumR.setEditable(false);
+        txtDatumR.setBackground(new java.awt.Color(212, 221, 225));
+        txtDatumR.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtDatumR.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(45, 48, 51));
+        txtClanarinaDo.setEditable(false);
+        txtClanarinaDo.setBackground(new java.awt.Color(212, 221, 225));
+        txtClanarinaDo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtClanarinaDo.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField5.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(45, 48, 51));
+        txtKontakt.setEditable(false);
+        txtKontakt.setBackground(new java.awt.Color(212, 221, 225));
+        txtKontakt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtKontakt.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField6.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(45, 48, 51));
+        txtUsername.setEditable(false);
+        txtUsername.setBackground(new java.awt.Color(212, 221, 225));
+        txtUsername.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(45, 48, 51));
 
         jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(212, 221, 225));
         jLabel9.setText("Zauzenja klijenta:");
 
-        jButton1.setBackground(new java.awt.Color(212, 221, 225));
-        jButton1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(45, 48, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_update_24px.png")); // NOI18N
-        jButton1.setText("Produzi clanarinu klijentu");
+        btnProduziClanarinu.setBackground(new java.awt.Color(212, 221, 225));
+        btnProduziClanarinu.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnProduziClanarinu.setForeground(new java.awt.Color(45, 48, 51));
+        btnProduziClanarinu.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_update_24px.png")); // NOI18N
+        btnProduziClanarinu.setText("Produzi clanarinu klijentu");
 
-        jButton2.setBackground(new java.awt.Color(212, 221, 225));
-        jButton2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(45, 48, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_save_24px.png")); // NOI18N
-        jButton2.setText("Sacuvaj izmene");
+        btnSacuvaj.setBackground(new java.awt.Color(212, 221, 225));
+        btnSacuvaj.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnSacuvaj.setForeground(new java.awt.Color(45, 48, 51));
+        btnSacuvaj.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_save_24px.png")); // NOI18N
+        btnSacuvaj.setText("Sacuvaj izmene");
 
-        jButton3.setBackground(new java.awt.Color(212, 221, 225));
-        jButton3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(45, 48, 51));
-        jButton3.setText("Tri meseca");
-        jButton3.setEnabled(false);
+        btnTriMeseca.setBackground(new java.awt.Color(212, 221, 225));
+        btnTriMeseca.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnTriMeseca.setForeground(new java.awt.Color(45, 48, 51));
+        btnTriMeseca.setText("Tri meseca");
+        btnTriMeseca.setEnabled(false);
 
-        jButton4.setBackground(new java.awt.Color(212, 221, 225));
-        jButton4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(45, 48, 51));
-        jButton4.setText("Sest meseci");
-        jButton4.setEnabled(false);
+        btnSestMeseci.setBackground(new java.awt.Color(212, 221, 225));
+        btnSestMeseci.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnSestMeseci.setForeground(new java.awt.Color(45, 48, 51));
+        btnSestMeseci.setText("Sest meseci");
+        btnSestMeseci.setEnabled(false);
 
-        jButton5.setBackground(new java.awt.Color(212, 221, 225));
-        jButton5.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(45, 48, 51));
-        jButton5.setText("Godinu dana");
-        jButton5.setEnabled(false);
+        btnGodinuDana.setBackground(new java.awt.Color(212, 221, 225));
+        btnGodinuDana.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnGodinuDana.setForeground(new java.awt.Color(45, 48, 51));
+        btnGodinuDana.setText("Godinu dana");
+        btnGodinuDana.setEnabled(false);
+
+        btnRazduzi.setBackground(new java.awt.Color(212, 221, 225));
+        btnRazduzi.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnRazduzi.setForeground(new java.awt.Color(45, 48, 51));
+        btnRazduzi.setText("Razduzi");
+
+        btnOdobrii.setBackground(new java.awt.Color(212, 221, 225));
+        btnOdobrii.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnOdobrii.setForeground(new java.awt.Color(45, 48, 51));
+        btnOdobrii.setText("Odobri");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,32 +173,38 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDatumR, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtClanarinaDo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnProduziClanarinu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSestMeseci, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                            .addComponent(btnTriMeseca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGodinuDana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnOdobrii, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRazduzi, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,54 +213,58 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDatumR, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtClanarinaDo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnProduziClanarinu)
                         .addGap(21, 21, 21)
-                        .addComponent(jButton3)
+                        .addComponent(btnTriMeseca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnSestMeseci)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnGodinuDana))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRazduzi)
+                    .addComponent(btnOdobrii))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnGodinuDana;
+    private javax.swing.JButton btnOdobrii;
+    private javax.swing.JButton btnProduziClanarinu;
+    private javax.swing.JButton btnRazduzi;
+    private javax.swing.JButton btnSacuvaj;
+    private javax.swing.JButton btnSestMeseci;
+    private javax.swing.JButton btnTriMeseca;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -247,12 +273,73 @@ public class PanelPrikazKlijenta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tblZad;
+    private javax.swing.JTextField txtClanarinaDo;
+    private javax.swing.JTextField txtDatumR;
+    private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtKontakt;
+    private javax.swing.JTextField txtPrezime;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnGodinuDana() {
+        return btnGodinuDana;
+    }
+
+    public void setBtnGodinuDana(JButton btnGodinuDana) {
+        this.btnGodinuDana = btnGodinuDana;
+    }
+
+    public JButton getBtnProduziClanarinu() {
+        return btnProduziClanarinu;
+    }
+
+    public JButton getBtnRazduzi() {
+        return btnRazduzi;
+    }
+
+    public JButton getBtnOdobrii() {
+        return btnOdobrii;
+    }
+
+    public JButton getBtnSestMeseci() {
+        return btnSestMeseci;
+    }
+
+    public JButton getBtnTriMeseca() {
+        return btnTriMeseca;
+    }
+
+    public JTable getTblZad() {
+        return tblZad;
+    }
+
+    public JTextField getTxtClanarinaDo() {
+        return txtClanarinaDo;
+    }
+
+    public JTextField getTxtDatumR() {
+        return txtDatumR;
+    }
+
+    public JTextField getTxtIme() {
+        return txtIme;
+    }
+
+    public JTextField getTxtKontakt() {
+        return txtKontakt;
+    }
+
+    public JTextField getTxtPrezime() {
+        return txtPrezime;
+    }
+
+    public JTextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    public JButton getBtnSacuvaj() {
+        return btnSacuvaj;
+    }
+
 }

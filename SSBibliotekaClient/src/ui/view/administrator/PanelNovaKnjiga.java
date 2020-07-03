@@ -7,9 +7,14 @@ package ui.view.administrator;
 
 import communication.CommunicationController;
 import domain.Autor;
+import domain.Jezik;
 import domain.Zanr;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import ui.view.components.TableAutor;
 import ui.view.components.TableZanr;
 
@@ -22,18 +27,8 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
     /**
      * Creates new form PanelNovaKnjiga
      */
-    TableAutor tableAutor;
-    TableZanr tableZanr;
     public PanelNovaKnjiga() throws IOException {
         initComponents();
-        List<Zanr> zanrovi = CommunicationController.getInstance().vratiZanrove();
-        List<Autor> autori = CommunicationController.getInstance().vratiAutore();
-        tableAutor = new TableAutor();
-        tableAutor.setAutori(autori);
-        tblAutor.setModel(tableAutor);
-        tableZanr = new TableZanr();
-        tableZanr.setZanr(zanrovi);
-        tblZanr.setModel(tableZanr);
     }
 
     /**
@@ -46,29 +41,29 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbAutor = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cmbZanr = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblZanr = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAutor = new javax.swing.JTable();
-        jComboBox3 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        cmbJezik = new javax.swing.JComboBox();
+        txtNaziv = new javax.swing.JTextField();
+        txtIzdavalac = new javax.swing.JTextField();
+        txtDatumIzdavanja = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtSadrzaj = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtBrStranica = new javax.swing.JTextField();
+        btnZanr = new javax.swing.JButton();
+        btnAutor = new javax.swing.JButton();
+        btnSacuvaj = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 82, 82));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nova knjiga", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Berlin Sans FB", 0, 18), new java.awt.Color(212, 221, 225))); // NOI18N
@@ -77,9 +72,9 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(212, 221, 225));
         jLabel1.setText("Naziv:");
 
-        jComboBox1.setBackground(new java.awt.Color(212, 221, 225));
-        jComboBox1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(45, 48, 51));
+        cmbAutor.setBackground(new java.awt.Color(212, 221, 225));
+        cmbAutor.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        cmbAutor.setForeground(new java.awt.Color(45, 48, 51));
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(212, 221, 225));
@@ -97,9 +92,9 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(212, 221, 225));
         jLabel5.setText("Jezik:");
 
-        jComboBox2.setBackground(new java.awt.Color(212, 221, 225));
-        jComboBox2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(45, 48, 51));
+        cmbZanr.setBackground(new java.awt.Color(212, 221, 225));
+        cmbZanr.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        cmbZanr.setForeground(new java.awt.Color(45, 48, 51));
 
         jLabel6.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(212, 221, 225));
@@ -135,52 +130,52 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblAutor);
 
-        jComboBox3.setBackground(new java.awt.Color(212, 221, 225));
-        jComboBox3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(45, 48, 51));
+        cmbJezik.setBackground(new java.awt.Color(212, 221, 225));
+        cmbJezik.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        cmbJezik.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField1.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(45, 48, 51));
+        txtNaziv.setBackground(new java.awt.Color(212, 221, 225));
+        txtNaziv.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtNaziv.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField2.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(45, 48, 51));
+        txtIzdavalac.setBackground(new java.awt.Color(212, 221, 225));
+        txtIzdavalac.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtIzdavalac.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextField3.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(45, 48, 51));
+        txtDatumIzdavanja.setBackground(new java.awt.Color(212, 221, 225));
+        txtDatumIzdavanja.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtDatumIzdavanja.setForeground(new java.awt.Color(45, 48, 51));
 
-        jTextArea1.setBackground(new java.awt.Color(212, 221, 225));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(45, 48, 51));
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        txtSadrzaj.setBackground(new java.awt.Color(212, 221, 225));
+        txtSadrzaj.setColumns(20);
+        txtSadrzaj.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtSadrzaj.setForeground(new java.awt.Color(45, 48, 51));
+        txtSadrzaj.setRows(5);
+        jScrollPane3.setViewportView(txtSadrzaj);
 
         jLabel8.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(212, 221, 225));
         jLabel8.setText("Broj stranica:");
 
-        jTextField4.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(45, 48, 51));
+        txtBrStranica.setBackground(new java.awt.Color(212, 221, 225));
+        txtBrStranica.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtBrStranica.setForeground(new java.awt.Color(45, 48, 51));
 
-        jButton1.setBackground(new java.awt.Color(212, 221, 225));
-        jButton1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(45, 48, 51));
-        jButton1.setText("Dodaj zanr");
+        btnZanr.setBackground(new java.awt.Color(212, 221, 225));
+        btnZanr.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnZanr.setForeground(new java.awt.Color(45, 48, 51));
+        btnZanr.setText("Dodaj zanr");
 
-        jButton2.setBackground(new java.awt.Color(212, 221, 225));
-        jButton2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(45, 48, 51));
-        jButton2.setText(" Dodaj autora");
+        btnAutor.setBackground(new java.awt.Color(212, 221, 225));
+        btnAutor.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnAutor.setForeground(new java.awt.Color(45, 48, 51));
+        btnAutor.setText(" Dodaj autora");
 
-        jButton3.setBackground(new java.awt.Color(212, 221, 225));
-        jButton3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(45, 48, 51));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_save_24px.png")); // NOI18N
-        jButton3.setText("Sacuvaj knjigu");
+        btnSacuvaj.setBackground(new java.awt.Color(212, 221, 225));
+        btnSacuvaj.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnSacuvaj.setForeground(new java.awt.Color(45, 48, 51));
+        btnSacuvaj.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_save_24px.png")); // NOI18N
+        btnSacuvaj.setText("Sacuvaj knjigu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -197,15 +192,15 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField4))
+                            .addComponent(txtBrStranica))
                         .addGap(346, 346, 346)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbZanr, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnZanr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -213,23 +208,23 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtIzdavalac)
+                                        .addComponent(txtDatumIzdavanja, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cmbJezik, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNaziv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(14, 14, 14)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cmbAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(btnAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(btnSacuvaj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -239,37 +234,37 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbZanr, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jButton1)
+                        .addComponent(btnZanr)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnAutor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIzdavalac, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDatumIzdavanja, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbJezik, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -277,23 +272,23 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBrStranica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane3))))
                 .addGap(20, 20, 20)
-                .addComponent(jButton3)
+                .addComponent(btnSacuvaj)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JButton btnAutor;
+    private javax.swing.JButton btnSacuvaj;
+    private javax.swing.JButton btnZanr;
+    private javax.swing.JComboBox cmbAutor;
+    private javax.swing.JComboBox cmbJezik;
+    private javax.swing.JComboBox cmbZanr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -305,12 +300,116 @@ public class PanelNovaKnjiga extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tblAutor;
     private javax.swing.JTable tblZanr;
+    private javax.swing.JTextField txtBrStranica;
+    private javax.swing.JTextField txtDatumIzdavanja;
+    private javax.swing.JTextField txtIzdavalac;
+    private javax.swing.JTextField txtNaziv;
+    private javax.swing.JTextArea txtSadrzaj;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getBtnAutor() {
+        return btnAutor;
+    }
+
+    public void setBtnAutor(javax.swing.JButton btnAutor) {
+        this.btnAutor = btnAutor;
+    }
+
+    public javax.swing.JButton getBtnSacuvaj() {
+        return btnSacuvaj;
+    }
+
+    public void setBtnSacuvaj(javax.swing.JButton btnSacuvaj) {
+        this.btnSacuvaj = btnSacuvaj;
+    }
+
+    public javax.swing.JButton getBtnZanr() {
+        return btnZanr;
+    }
+
+    public void setBtnZanr(javax.swing.JButton btnZanr) {
+        this.btnZanr = btnZanr;
+    }
+
+    public javax.swing.JComboBox getCmbAutor() {
+        return cmbAutor;
+    }
+
+    public void setCmbAutor(javax.swing.JComboBox cmbAutor) {
+        this.cmbAutor = cmbAutor;
+    }
+
+    public javax.swing.JComboBox getCmbJezik() {
+        return cmbJezik;
+    }
+
+    public void setCmbJezik(javax.swing.JComboBox cmbJezik) {
+        this.cmbJezik = cmbJezik;
+    }
+
+    public javax.swing.JComboBox getCmbZanr() {
+        return cmbZanr;
+    }
+
+    public void setCmbZanr(javax.swing.JComboBox cmbZanr) {
+        this.cmbZanr = cmbZanr;
+    }
+
+    public javax.swing.JTable getTblAutor() {
+        return tblAutor;
+    }
+
+    public void setTblAutor(javax.swing.JTable tblAutor) {
+        this.tblAutor = tblAutor;
+    }
+
+    public javax.swing.JTable getTblZanr() {
+        return tblZanr;
+    }
+
+    public void setTblZanr(javax.swing.JTable tblZanr) {
+        this.tblZanr = tblZanr;
+    }
+
+    public javax.swing.JTextField getTxtBrStranica() {
+        return txtBrStranica;
+    }
+
+    public void setTxtBrStranica(javax.swing.JTextField txtBrStranica) {
+        this.txtBrStranica = txtBrStranica;
+    }
+
+    public javax.swing.JTextField getTxtDatumIzdavanja() {
+        return txtDatumIzdavanja;
+    }
+
+    public void setTxtDatumIzdavanja(javax.swing.JTextField txtDatumIzdavanja) {
+        this.txtDatumIzdavanja = txtDatumIzdavanja;
+    }
+
+    public javax.swing.JTextField getTxtIzdavalac() {
+        return txtIzdavalac;
+    }
+
+    public void setTxtIzdavalac(javax.swing.JTextField txtIzdavalac) {
+        this.txtIzdavalac = txtIzdavalac;
+    }
+
+    public javax.swing.JTextField getTxtNaziv() {
+        return txtNaziv;
+    }
+
+    public void setTxtNaziv(javax.swing.JTextField txtNaziv) {
+        this.txtNaziv = txtNaziv;
+    }
+
+    public javax.swing.JTextArea getTxtSadrzaj() {
+        return txtSadrzaj;
+    }
+
+    public void setTxtSadrzaj(javax.swing.JTextArea txtSadrzaj) {
+        this.txtSadrzaj = txtSadrzaj;
+    }
 }

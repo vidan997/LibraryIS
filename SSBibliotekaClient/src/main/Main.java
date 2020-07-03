@@ -5,9 +5,7 @@
  */
 package main;
 
-import ui.view.administrator.MainFrameA;
-import ui.view.klijent.MainFrame;
-import ui.view.logIn.MainFormLogIn;
+import ui.view.controller.UIController;
 
 /**
  *
@@ -16,8 +14,7 @@ import ui.view.logIn.MainFormLogIn;
 public class Main {
     
     public static void main(String[] args) {
-        MainFormLogIn main = new MainFormLogIn();
-        main.setVisible(true);
+        UIController.getInstance().pokreni();
     }
     
 }

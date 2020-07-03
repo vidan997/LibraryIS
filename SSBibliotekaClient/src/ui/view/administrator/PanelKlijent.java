@@ -5,6 +5,9 @@
  */
 package ui.view.administrator;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author vidan
@@ -28,8 +31,8 @@ public class PanelKlijent extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtImeUser = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 82, 82));
@@ -38,14 +41,14 @@ public class PanelKlijent extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(51, 82, 82));
 
-        jTextField1.setBackground(new java.awt.Color(212, 221, 225));
-        jTextField1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(45, 48, 51));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 3));
+        txtImeUser.setBackground(new java.awt.Color(212, 221, 225));
+        txtImeUser.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtImeUser.setForeground(new java.awt.Color(45, 48, 51));
+        txtImeUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 3));
 
-        jButton1.setBackground(new java.awt.Color(212, 221, 225));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_search_24px.png")); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 3));
+        btnSearch.setBackground(new java.awt.Color(212, 221, 225));
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_search_24px.png")); // NOI18N
+        btnSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82), 3));
 
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(212, 221, 225));
@@ -59,9 +62,9 @@ public class PanelKlijent extends javax.swing.JPanel {
                 .addContainerGap(272, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtImeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,9 +72,9 @@ public class PanelKlijent extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtImeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
@@ -81,9 +84,17 @@ public class PanelKlijent extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtImeUser;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JTextField getTxtImeUser() {
+        return txtImeUser;
+    }
 }

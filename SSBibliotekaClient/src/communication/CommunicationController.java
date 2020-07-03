@@ -7,7 +7,9 @@ package communication;
 
 import domain.Autor;
 import domain.Klijent;
+import domain.Knjiga;
 import domain.OpstiDomenskiObjekat;
+import domain.Zaduzivanje;
 import domain.Zanr;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -41,14 +43,10 @@ public class CommunicationController {
         return instance;
     }
 
-    public OpstiDomenskiObjekat logIn(String username, String password, String klijentAdmin) throws Exception {
+    public OpstiDomenskiObjekat logIn(Map data) throws Exception {
         RequestObject request = new RequestObject();
         request.setOperation(Operation.OPERATION_LOGIN);
 
-        Map<String, String> data = new HashMap<>();
-        data.put("username", username);
-        data.put("password", password);
-        data.put("adminKlijent", klijentAdmin);
         request.setData(data);
 
         sendRequest(request);
@@ -59,18 +57,6 @@ public class CommunicationController {
         }
 
         return (OpstiDomenskiObjekat) response.getData();
-    }
-
-    public Klijent sacuvajNovogKlijenta(Klijent klijent) throws Exception {
-        RequestObject request = new RequestObject();
-        request.setOperation(Operation.OPERATION_DODAJ_NOVOG);
-        request.setData(klijent);
-        sendRequest(request);
-        ResponseObject response = receiveResponse();
-        if (response.getException() != null) {
-            throw response.getException();
-        }
-        return (Klijent) response.getData();
     }
 
     private void sendRequest(RequestObject request) throws IOException {
@@ -85,12 +71,113 @@ public class CommunicationController {
         return response;
     }
 
-    public List<Zanr> vratiZanrove() {
-        return new ArrayList<>();
+    public List<Zanr> vratiZanrove() throws Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_VRATI_ZANROVE);
+        sendRequest(request);
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<Zanr>) response.getData();
     }
 
-    public List<Autor> vratiAutore() {
-        return new ArrayList<>();
+    public List<Autor> vratiAutore() throws Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_VRATI_AUTORE);
+        sendRequest(request);
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<Autor>) response.getData();
+    }
+
+    public Klijent sacuvajNovogKlijenta(Map<String, String> data) throws IOException, ClassNotFoundException, Exception {
+        RequestObject request = new RequestObject();
+        request.setData(data);
+        request.setOperation(Operation.OPERATION_DODAJ_NOVOG);
+        sendRequest(request);
+
+        ResponseObject response = receiveResponse();
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+        return (Klijent) response.getData();
+    }
+
+    public Knjiga sacuvajNovuKnjigu(Map<String, Object> data) throws IOException, ClassNotFoundException, Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_DODAJ_NOVU_KNJIGU);
+        request.setData(data);
+        sendRequest(request);
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (Knjiga) response.getData();
+    }
+
+    public Klijent pretraziKlijenta(String imeUser) throws IOException, Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_PRETRAZI_KLIJENTA);
+        request.setData(imeUser);
+        sendRequest(request);
+
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (Klijent) response.getData();
+    }
+
+    public List<Zaduzivanje> vratiZaduzenja(Klijent klijent) throws IOException, ClassNotFoundException, Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_VRATI_ZADUZIVANJA);
+        request.setData(klijent);
+        sendRequest(request);
+
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+
+        return (List<Zaduzivanje>) response.getData();
+    }
+
+    public void sacuvajIzmeneZaduzenja(List<Zaduzivanje> zaduzanja) throws IOException, Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_RAZDUZI);
+        request.setData(zaduzanja);
+        sendRequest(request);
+
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
+    }
+
+    public void izmeniKorisnika(Klijent klijent) throws Exception {
+        RequestObject request = new RequestObject();
+        request.setOperation(Operation.OPERATION_IZMENA_KLIJENTA);
+        request.setData(klijent);
+        sendRequest(request);
+
+        ResponseObject response = receiveResponse();
+
+        if (response.getException() != null) {
+            throw response.getException();
+        }
     }
 
 }

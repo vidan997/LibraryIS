@@ -63,4 +63,14 @@ public class TableZanr extends AbstractTableModel{
         this.zanr = autori;
         fireTableDataChanged();
     }
+
+    public void add(Zanr zanr) {
+        this.zanr.add(zanr);
+        fireTableDataChanged();
+    }
+
+    public List<Zanr> getZanr() {
+        return zanr;
+    }
+    
 }

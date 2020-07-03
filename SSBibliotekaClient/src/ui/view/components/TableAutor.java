@@ -67,4 +67,13 @@ public class TableAutor extends AbstractTableModel{
         this.autori = autori;
         fireTableDataChanged();
     }
+
+    public void add(Autor autor) {
+        autori.add(autor);
+        fireTableDataChanged();
+    }
+
+    public List<Autor> getAutori() {
+        return autori;
+    }
 }

@@ -5,18 +5,6 @@
  */
 package ui.view.logIn;
 
-import communication.CommunicationController;
-import domain.Administrator;
-import domain.Klijent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
-import javax.swing.text.StyleConstants;
-import ui.view.administrator.MainFrameA;
-import ui.view.klijent.MainFrame;
-
 /**
  *
  * @author vidan
@@ -28,9 +16,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
      */
     public MainFormLogIn() {
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        BtnKlijent.setSelected(true);
+ 
     }
 
     /**
@@ -43,7 +29,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         BtnKlijent = new javax.swing.JRadioButton();
@@ -58,7 +44,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         txtPass = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnLogIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -67,12 +53,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 82, 82)));
         jPanel2.setPreferredSize(new java.awt.Dimension(696, 27));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_delete_16px.png")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        btnExit.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_delete_16px.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -80,12 +61,12 @@ public class MainFormLogIn extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 596, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(btnExit)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -99,21 +80,11 @@ public class MainFormLogIn extends javax.swing.JFrame {
         BtnKlijent.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         BtnKlijent.setForeground(new java.awt.Color(51, 82, 82));
         BtnKlijent.setText("Klijent");
-        BtnKlijent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKlijentActionPerformed(evt);
-            }
-        });
 
         btnAdmin.setBackground(new java.awt.Color(212, 221, 225));
         btnAdmin.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         btnAdmin.setForeground(new java.awt.Color(51, 82, 82));
         btnAdmin.setText("Admin");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
-            }
-        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_microsoft_admin_30px.png")); // NOI18N
 
@@ -171,11 +142,6 @@ public class MainFormLogIn extends javax.swing.JFrame {
         txtUser.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         txtUser.setForeground(new java.awt.Color(212, 221, 225));
         txtUser.setBorder(null);
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
-            }
-        });
 
         jSeparator1.setBackground(new java.awt.Color(212, 221, 225));
         jSeparator1.setForeground(new java.awt.Color(212, 221, 225));
@@ -184,25 +150,15 @@ public class MainFormLogIn extends javax.swing.JFrame {
         txtPass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtPass.setForeground(new java.awt.Color(212, 221, 225));
         txtPass.setBorder(null);
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
-            }
-        });
 
         jSeparator2.setBackground(new java.awt.Color(212, 221, 225));
         jSeparator2.setForeground(new java.awt.Color(212, 221, 225));
 
-        jButton2.setBackground(new java.awt.Color(212, 221, 225));
-        jButton2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 82, 82));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_login_24px.png")); // NOI18N
-        jButton2.setText("Log In");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        btnLogIn.setBackground(new java.awt.Color(212, 221, 225));
+        btnLogIn.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        btnLogIn.setForeground(new java.awt.Color(51, 82, 82));
+        btnLogIn.setIcon(new javax.swing.ImageIcon("C:\\Users\\vidan\\Documents\\NetBeansProjects\\SeminarskiPS\\SSBiblioteka\\SSBibliotekaClient\\src\\images\\icons8_login_24px.png")); // NOI18N
+        btnLogIn.setText("Log In");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -216,7 +172,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
                     .addComponent(txtUser)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
@@ -241,7 +197,7 @@ public class MainFormLogIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -250,64 +206,13 @@ public class MainFormLogIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
-
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
-
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        if (BtnKlijent.isSelected()) {
-            BtnKlijent.setSelected(false);
-        }
-    }//GEN-LAST:event_btnAdminActionPerformed
-
-    private void BtnKlijentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKlijentActionPerformed
-        if (btnAdmin.isSelected()) {
-            btnAdmin.setSelected(false);
-        }
-    }//GEN-LAST:event_BtnKlijentActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (txtUser.getText().isEmpty() || txtPass.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Unesite username i sifru.", "Greska", WIDTH);
-            return;
-        }
-        if(BtnKlijent.isSelected()){
-            try {
-                Klijent klijent = (Klijent) CommunicationController.getInstance().logIn(txtUser.getText(), txtPass.getText(),"klijent");
-                new MainFrame(klijent).setVisible(true);
-                this.dispose();
-            } catch (IOException ex) {
-                Logger.getLogger(MainFormLogIn.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", WIDTH);
-            }
-        }else if(btnAdmin.isSelected()){
-            try {
-                Administrator administrator = (Administrator) CommunicationController.getInstance().logIn(txtUser.getText(), txtPass.getText(),"admin");
-                new MainFrameA(administrator).setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(MainFormLogIn.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", WIDTH);
-            }
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton BtnKlijent;
     private javax.swing.JRadioButton btnAdmin;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -322,4 +227,52 @@ public class MainFormLogIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JRadioButton getBtnKlijent() {
+        return BtnKlijent;
+    }
+
+    public void setBtnKlijent(javax.swing.JRadioButton BtnKlijent) {
+        this.BtnKlijent = BtnKlijent;
+    }
+
+    public javax.swing.JRadioButton getBtnAdmin() {
+        return btnAdmin;
+    }
+
+    public void setBtnAdmin(javax.swing.JRadioButton btnAdmin) {
+        this.btnAdmin = btnAdmin;
+    }
+
+    public javax.swing.JButton getBtnExit() {
+        return btnExit;
+    }
+
+    public void setBtnExit(javax.swing.JButton btnExit) {
+        this.btnExit = btnExit;
+    }
+
+    public javax.swing.JButton getBtnLogIn() {
+        return btnLogIn;
+    }
+
+    public void setBtnLogIn(javax.swing.JButton btnLogIn) {
+        this.btnLogIn = btnLogIn;
+    }
+
+    public javax.swing.JPasswordField getTxtPass() {
+        return txtPass;
+    }
+
+    public void setTxtPass(javax.swing.JPasswordField txtPass) {
+        this.txtPass = txtPass;
+    }
+
+    public javax.swing.JTextField getTxtUser() {
+        return txtUser;
+    }
+
+    public void setTxtUser(javax.swing.JTextField txtUser) {
+        this.txtUser = txtUser;
+    }
 }
